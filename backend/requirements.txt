@@ -1,0 +1,10 @@
+﻿Django==4.2 #Framework
+django-cors-headers==4.2.0 # Habilita el soporte para Cross-Origin Resource Sharing (CORS) en aplicaciones Django.
+django-environ==0.10.0 # Simplifica la gestión de la configuración mediante variables de entorno.
+djangorestframework==3.14.0 #Apis rest
+django-filter==23.3 # Proporciona una manera fácil de realizar filtrado en consultas Django.
+requests==2.31.0 # Solicitudes HTTP
+sqlparse==0.4.3 # Analizador de SQL para Python. Ayuda a analizar y formatear consultas SQL.
+itsdangerous==2.1.2 # Utilidades de seguridad para aplicaciones web Flask/Django.
+python-dateutil==2.8.2  # Herramientas para dates
+psycopg2==2.9.9
