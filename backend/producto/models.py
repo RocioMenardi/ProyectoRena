@@ -1,7 +1,8 @@
 from django.db import models
 from entrega.models import Entrega
+
 class Litro(models.Model):
-    cantidad = models.FloatField
+    cantidad = models.FloatField(null= True)
 
 class TipoProducto(models.Model):
     nombre = models.CharField(max_length=50)
