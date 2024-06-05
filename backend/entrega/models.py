@@ -1,5 +1,6 @@
 from django.db import models
-# Create your models here.
+from usuario.models import Usuario
+
 class ModeloBase:
     def borrado(self):
         activo = False
@@ -25,7 +26,7 @@ class Entrega(models.Model, ModeloBase):
     hora = models.TimeField(auto_now_add=True)
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE, related_name="entrega") #con related_name permite traer todas las entregas relacionadas a un cliente, teniendo el objeto cliente.
     nafta = models.ForeignKey(Nafta, on_delete=models.SET_DEFAULT, default=0)
-    #usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name="entregasUsuario")
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name="entregasUsuario", null=True)
     activo = models.BooleanField(default=True)
     
     def __str__(self): #en el admin muestre el atributo (nombre) del objeto.
