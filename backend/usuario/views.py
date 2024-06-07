@@ -13,7 +13,6 @@ class ValidarTokenView(APIView):
 
         if token:
             user = token.user
-             
             return Response({'user': user.username}, status=200)
 
         return Response({'valido': False}, status=400)
@@ -59,8 +58,9 @@ class Register(APIView):
             apellido=data['apellido']
         )
 
-        return Response({"mensaje":f"Usuario creado exitosamente", 
-                         "usuario": {user.username}, 
-                          "token":{token.key}} ,status=200)
+        return Response({
+            "mensaje":f"Usuario creado exitosamente", 
+            "usuario": {user.username}, 
+            "token":{token.key}} ,status=200)
             
             

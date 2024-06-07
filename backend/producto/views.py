@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
-from .models import Litro, TipoProducto
+from .models import Litro, TipoProducto, Producto
 from rest_framework.response import Response
+from rest_framework import status
 
 
 class LitroAbm (APIView):
@@ -13,7 +14,7 @@ class LitroAbm (APIView):
             data.append({
                 "litro": litro.cantidad #agrego la cantidad de cada litro
             })
-        return Response({"Litros":data})
+        return Response({"Litros":data}, status=200)
     
     def post(self, request): #crear
         if not "cantidad" in request.data: #si no esta cantidad
@@ -21,7 +22,7 @@ class LitroAbm (APIView):
         cantidad = request.data.get("cantidad") #obtengo cantidad
         if not Litro.objects.filter(cantidad=cantidad).exists(): #si no existe cantidad
             litro = Litro.objects.create(cantidad=cantidad) #lo creo
-            return Response({"Mensaje":"Litro creado exitosamente", "id":litro.id}, status=200)
+            return Response({"Mensaje":"Litro creado exitosamente", "id":litro.id}, status=201)
         else:
             return Response({"Error": "Ya existe esa cantidad de litro"}, status=400)
     
@@ -68,7 +69,7 @@ class TipoProductoAbm(APIView):
                 "descripcion": tipo.descripcion
             }
             )
-        return Response({"TiposProducto": data}) #retorno la respuesta en json
+        return Response({"TiposProducto": data}, status=200) #retorno la respuesta en json
     
     def post(self,request): #crear
         #Verificar que los campos nombre y descripcion estén presentes en la solicitud request.data
@@ -83,7 +84,7 @@ class TipoProductoAbm(APIView):
         # Verificar si ya existe un TipoProducto con el mismo nombre
         if not TipoProducto.objects.filter(nombre=nombre).exists():
             tipo = TipoProducto.objects.create(nombre=nombre, descripcion=descripcion)
-            return Response({"Mensaje": "Nuevo tipo producto creado", "id":tipo.id}, status=200)
+            return Response({"Mensaje": "Nuevo tipo producto creado", "id":tipo.id}, status=201)
             #Si no existe, creo un nuevo TipoProducto.
         else: #Si ya existe el TipoProducto
             return Response({"Error": "Ya existe un tipo producto con ese nombre"}, status=400)
@@ -131,3 +132,78 @@ class TipoProductoAbm(APIView):
         #Eliminar el TipoProducto de la base de datos
         tipo.delete()
         return Response({"Se borró con éxito el tipo producto"}, status=200)
+
+class Productoabm(APIView):
+    def get(self,request):
+        productos = Producto.objects.all()
+        data = []
+
+        for producto in productos:
+            data.append({
+                "costo": producto.costo,
+                "precioVenta": producto.precioVenta,
+                "litro": producto.litro,
+                "tipoProducto": producto.tipoProducto
+            })
+        return Response({"Productos":data}, status=200)
+    
+    def post(self,request):
+        if not all(key in request.data for key in ["costo", "precioVenta", "tipoProducto", "litro"]):
+            return Response({"Error": "Faltan los campos de costo o precioVenta"}, status=400)
+        
+        #obtener todos los valores 
+        costo = request.data.get("costo")
+        precioVenta = request.data.get("precioVenta")
+        litro_id = request.data.get("litro")
+        tipoProducto_id = request.data.get("tipoProducto")
+
+        #verificar si ya existe tipoProducto y litro(claves foraneas)
+        if not TipoProducto.objects.filter(id=tipoProducto_id).exists():
+            return Response({"Error": "No existe el Tipo Producto"}, status=404)
+        if not Litro.objects.filter(id=litro_id).exists():
+            return Response({"Error":"No existe litro"}, status=404)
+        
+        #crear nuevo producto
+        producto = Producto.objects.create(
+            costo=costo,
+            precioVenta=precioVenta,
+            litro_id=litro_id,
+            tipoProducto_id=tipoProducto_id,
+        )
+        return Response({"Mensaj":"El producto se creó con éxito","id": producto.id}, status=201)
+    
+    def put(self,request):
+        if not "id" in request.data:
+            return Response({"Error":"Falta el id"}, status=status.HTTP_400_BAD_REQUEST)
+        
+        id = request.data.get("id")
+        try:
+            producto = Producto.objects.get(id=id)
+        except Producto.DoesNotExist:
+            return Response({"Error":"No existe el producto"}, status=400)
+        
+        #actualizar campos
+        if "costo" in request.data:
+            producto.costo = request.data.get("costo")
+        if "precioVenta" in request.data:
+            producto.precioVenta = request.data.get("precioVenta")
+        if "litro" in request.data:
+            producto.litro = request.data.get("litro")
+        if "tipoProducto" in request.data:
+            producto.tipoProducto = request.data.get("tipoProducto")
+        
+        producto.save()
+        return Response({"Mensaje":"Se modificó con exito el producto"}, status=200)
+    
+    def delete(self, request):
+        if not "id" in request.data:
+            return Response({"Error": "Falta el id"}, status=400)
+        
+        id = request.data.get("id")
+        try:
+            producto = Producto.objects.get(id=id)
+        except Producto.DoesNotExist:
+            return Response({"Error":"Producto no existe"}, status=404)
+        
+        producto.delete()
+        return Response({"El producto se borró con éxito"}, status=200)
