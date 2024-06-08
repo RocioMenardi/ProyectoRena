@@ -3,8 +3,8 @@ from usuario.models import Usuario
 
 class ModeloBase:
     def borrado(self):
-        activo = False
-        self.activo = activo
+        self.activo = not self.activo
+        self.save()
 
 class Nafta(models.Model):
     precio_litro = models.FloatField()

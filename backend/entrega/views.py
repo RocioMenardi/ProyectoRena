@@ -12,8 +12,7 @@ class Naftaabm(APIView):
             data.append({
                 "id": nafta.id,
                 "precio litro": nafta.precio_litro,
-            }
-            )
+            })
         return Response({"Precio litro":data}, status=200)
     
     def post(self,request):
@@ -22,8 +21,8 @@ class Naftaabm(APIView):
         
         precio_litro = request.data.get("precio_litro")
         if not Nafta.objects.filter(precio_litro=precio_litro).exists():
-            naftaprecio = Nafta.objects.create(precio_litro=precio_litro)
-            return Response({"Mensaje":"Se creó con éxito", "id":naftaprecio.id}, status=200)
+            naftaPrecio = Nafta.objects.create(precio_litro=precio_litro)
+            return Response({"Mensaje":"Se creó con éxito", "id":naftaPrecio.id}, status=200)
         else:
             return Response({"Error":"Ya existe ese precio"}, status=400)
     
@@ -59,7 +58,7 @@ class Naftaabm(APIView):
     
 class Clienteabm(APIView):
     def get(self,request):
-        clientes = Cliente.objects.all()
+        clientes = Cliente.objects.filter(activo=True) #cambie el all() por filter para que me traiga los que estan activos
         data = []
 
         for cliente in clientes:
@@ -69,11 +68,12 @@ class Clienteabm(APIView):
                 "telefono":cliente.telefono,
                 "direccion":cliente.direccion,
                 "descripcion":cliente.descripcion,
-                "activo":cliente.activo,
+                #"activo":cliente.activo, No hace falta mostrar el activo ya que solo vamos a mostrar los clientes que esten activos. Porque los q estan desactivados son los 'borrados'
             })
         return Response({"Clientes":data}, status=200)
     
     def post(self,request):
+
         if not "nombre" in request.data or not "apellido" in request.data:
             return Response({"Error":"Falta el campo nombre o apellido"}, status=400)
         
@@ -82,7 +82,7 @@ class Clienteabm(APIView):
         telefono = request.data.get("telefono")
         direccion = request.data.get("direccion")
         descripcion = request.data.get("descripcion")
-        activo = request.data.get("activo")
+       #activo = request.data.get("activo") No hace falta pasar el activo ya que se setea por defualt en True
 
         if not Cliente.objects.filter(nombre=nombre, apellido=apellido).exists():
             cliente = Cliente.objects.create(
@@ -90,8 +90,7 @@ class Clienteabm(APIView):
                 apellido=apellido, 
                 telefono=telefono,
                 direccion=direccion,
-                descripcion=descripcion,
-                activo=activo,
+                descripcion=descripcion
                 )
             return Response({"Mensaje": "Cliente creado", "id":cliente.id}, status=200)
         else:
@@ -131,5 +130,6 @@ class Clienteabm(APIView):
         except Cliente.DoesNotExist:
             return Response({"Error":"No existe ese cliente"}, status=404)
         
-        cliente.delete()
-        return Response({"El cliente se ha borrado con éxito"}, status=200)
+        cliente.borrado() #cambie el delete por el borrado, para que lo desactive
+        return Response({"Mensaje": "El cliente se ha borrado con éxito",
+                         "activo": cliente.activo}, status=200)
