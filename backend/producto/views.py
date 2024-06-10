@@ -157,7 +157,7 @@ class Productoabm(APIView):
     def post(self,request):
 
         if not all(key in request.data for key in ["costo", "precioVenta", "tipoProducto", "litro"]):
-            return Response({"Error": "Faltan los campos de costo o precioVenta"}, status=400)
+            return Response({"Error": "Faltan los campos obligatorios"}, status=400)
         
         #obtener todos los valores 
         costo = request.data.get("costo")
@@ -182,7 +182,7 @@ class Productoabm(APIView):
             litro=litro,
             tipoProducto=tipoProducto,
         )
-        return Response({"Mensaj":"El producto se creó con éxito","id": producto.id}, status=200)
+        return Response({"Mensaje":"El producto se creó con éxito","id": producto.id}, status=200)
     
     def put(self,request):
         if not "id" in request.data:
@@ -192,7 +192,7 @@ class Productoabm(APIView):
         try:
             producto = Producto.objects.get(id=id)
         except Producto.DoesNotExist:
-            return Response({"Error":"No existe el producto"}, status=400)
+            return Response({"Error":"No existe el producto"}, status=404)
         
         #actualizar campos
         if "costo" in request.data:
@@ -202,7 +202,7 @@ class Productoabm(APIView):
         if "litro" in request.data:
             producto.litro = request.data.get("litro")
         if "tipoProducto" in request.data:
-            producto.tipoProducto = request.data.get("tipoProducto")
+            producto.tipoProducto.nombre = request.data.get("tipoProducto")
         
         producto.save()
         return Response({"Mensaje":"Se modificó con exito el producto"}, status=200)
@@ -219,4 +219,4 @@ class Productoabm(APIView):
         
         producto.borrado()
         return Response({"Mensaje":"El producto se borró con éxito",
-                         "activo": producto.activo}, status=200)
+                        "activo": producto.activo}, status=200)

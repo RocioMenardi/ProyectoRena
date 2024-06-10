@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from .models import Nafta, Cliente
+from .models import Nafta, Cliente, Entrega
+from usuario.models import Usuario
 
 class Naftaabm(APIView):
     def get(self,request):
@@ -82,7 +83,7 @@ class Clienteabm(APIView):
         telefono = request.data.get("telefono")
         direccion = request.data.get("direccion")
         descripcion = request.data.get("descripcion")
-       #activo = request.data.get("activo") No hace falta pasar el activo ya que se setea por defualt en True
+        #activo = request.data.get("activo") No hace falta pasar el activo ya que se setea por defualt en True
 
         if not Cliente.objects.filter(nombre=nombre, apellido=apellido).exists():
             cliente = Cliente.objects.create(
@@ -131,5 +132,96 @@ class Clienteabm(APIView):
             return Response({"Error":"No existe ese cliente"}, status=404)
         
         cliente.borrado() #cambie el delete por el borrado, para que lo desactive
-        return Response({"Mensaje": "El cliente se ha borrado con éxito",
-                         "activo": cliente.activo}, status=200)
+        return Response({"Mensaje": "El cliente se ha borrado con éxito","activo": cliente.activo}, status=200)
+
+class Entregaabm(APIView):
+    def get(self,request):
+        entregas = Entrega.objects.filter(activo=True)
+        data = []
+
+        for entrega in entregas:
+            data.append({
+                "id": entrega.id,
+                "fecha": entrega.fecha,
+                "hora":entrega.hora,
+                "cliente": entrega.cliente.nombre,
+                "nafta": entrega.nafta.precio_litro,
+                "usuario": entrega.usuario.nombre,
+            })
+        return Response({"Entregas":data}, status=200)
+    
+    def post(self,request):
+        if not all(key in request.data for key in ["fecha", "hora", "cliente", "nafta", "usuario"]):
+            return Response({"Error": "Faltan los campos obligatorios"}, status=400)
+        
+        #obtengo los valores
+        fecha = request.data.get("fecha")
+        hora = request.data.get("hora")
+        cliente_id = request.data.get("cliente")
+        nafta_id = request.data.get("nafta")
+        usuario_id = request.data.get("usuario")
+
+        try:
+            cliente = Cliente.objects.get(id=cliente_id)
+        except Cliente.DoesNotExist:
+            return Response({"Error":"No existe el cliente"}, status=404)
+        
+        try: 
+            nafta = Nafta.objects.get(id=nafta_id)
+        except Nafta.DoesNotExist:
+            return Response({"Error":"No existe nafta"}, status=404)
+        
+        try:
+            usuario = Usuario.objects.get(id=usuario_id)
+        except Usuario.DoesNotExist:
+            return Response({"Error":"No existe el usuario"}, status=404)
+        
+        #crear entrega
+        entrega = Entrega.objects.create(
+            fecha = fecha,
+            hora = hora,
+            cliente = cliente,
+            nafta = nafta,
+            usuario = usuario,
+        )
+        return Response({"Mensaje":"La entrega se creó con éxito","id": entrega.id}, status=200)
+    
+    def put(self,request):
+        if not "id" in request.data:
+            return Response({"Error": "Falta el id"}, status=400)
+        
+        id = request.data.get("id")
+
+        try:
+            entrega = Entrega.objects.get(id=id)
+        except Entrega.DoesNotExist:
+            return Response({"Error":"No existe la entrega"}, status=404)
+        
+        #actualizar 
+        if "fecha" in request.data:
+            entrega.fecha = request.data.get("fecha")
+        if "hora" in request.data:
+            entrega.hora = request.data.get("hora")
+        if "cliente" in request.data:
+            entrega.cliente = request.data.get("cliente")
+        if "nafta" in request.data:
+            entrega.nafta = request.data.get("nafta")
+        if "usuario" in request.data:
+            entrega.usuario = request.data.get("usuario")
+
+        entrega.save()
+        return Response({"Mensaje": "La entrega se modificó con éxito"}, status=200)
+    
+    def delete(self,request):
+        if not "id" in request.data:
+            return Response({"Error":"Falta el id"}, status=400)
+        
+        id=request.data.get("id")
+
+        try:
+            entrega = Entrega.objects.get(id=id)
+        except Entrega.DoesNotExist:
+            return Response({"Error":"La entrega no existe"}, status=404)
+        
+        entrega.borrado()
+        return Response({"Mensaje":"La entrega se borró con éxito", "activo":entrega.activo}, status=200)
