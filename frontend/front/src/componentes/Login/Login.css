@@ -1,23 +1,27 @@
-/* src/Login.css */
+/* src/componentes/Login/Login.css */
+/* Azul Oscuro: #013465 */
+/* Celeste: #96bad7 */
+
 .container {
-    display: flex; /* Utiliza Flexbox para centrar el contenido */
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    height: 100vh; /* Hace que el contenedor ocupe toda la altura de la ventana */
-    background-color: #444444;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #013465;
 }
 
 .login {
-    width: 300px; /*ancho del contenedor*/
-    margin: 0 auto; /*centra el contenedor de login horizontalmente (cuadrado del inicio)*/
-    padding: 20px; /*un margen dentro del contenedor*/
-    border: 1px solid #ccc; /*Añade un borde de 1 píxel de ancho, sólido y de color gris claro*/
-    border-radius: 5px; /*Redondea las esquinas del borde del contenedor*/
-    background-color: cadetblue;
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #96bad7;
 }
 
 .login h2 {
     text-align: center;
+    color: #013465;
 }
 
 .login form div {
@@ -27,8 +31,9 @@
 .login label {
     display: block;
     margin-bottom: 0px;
-    text-align: left; /* Alineación del texto a la izquierda */
-    width: 100%; /* Asegura que la etiqueta ocupe todo el ancho disponible */
+    text-align: left;
+    width: 100%;
+    color: #013465;
 }
 
 .login input {
@@ -36,25 +41,27 @@
     padding: 8px;
     box-sizing: border-box;
 }
-/* Estilos para los campos input cuando están enfocados */
+
 .login input:focus {
-    border: 2px solid black; /* Bordes negros cuando se enfoca */
-    outline: none; /* Elimina el contorno predeterminado */
+    border: 2px solid black;
+    outline: none;
 }
+
 .login button {
     width: 100%;
     padding: 10px;
-    background-color: black;
+    background-color: #013465;
     color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Transición suave para el cambio de color de fondo */
+    transition: background-color 0.3s ease;
 }
+
 .login button:hover {
-    background-color: #333; /* Cambio de color al pasar el mouse sobre el botón */
+    background-color: #476483;
 }
 
 .login button:active {
-    background-color: #555; /* Cambio de color cuando se hace clic en el botón */
+    background-color: #c9d7e5;
 }

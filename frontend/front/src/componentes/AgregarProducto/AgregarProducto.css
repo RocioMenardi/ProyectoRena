@@ -1,0 +1,24 @@
+.container{
+    display: flex; /* Utiliza Flexbox para centrar el contenido */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100vh; /* Hace que el contenedor ocupe toda la altura de la ventana */
+    background-color: #013465;
+}
+.pageProducto{
+    width: 300px; /* Ancho del contenedor */
+    margin: 0 auto; /* Centra el contenedor de home horizontalmente */
+    padding: 20px; /* Un margen dentro del contenedor */
+    border: 1px solid #ccc; /* Añade un borde de 1 píxel de ancho, sólido y de color gris claro */
+    border-radius: 5px; /* Redondea las esquinas del borde del contenedor */
+    background-color: #96bad7;
+}
+
+.pageProducto h2{
+    color:#013465;
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+}

@@ -1,13 +1,67 @@
-/* src/Home.css */
-.home {
-    text-align: center;
-    padding: 20px;
+/* src/componentes/Home.css */
+.container {
+    display: flex; /* Utiliza Flexbox para centrar el contenido */
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    height: 100vh; /* Hace que el contenedor ocupe toda la altura de la ventana */
+    background-color: #013465;
 }
 
-.home h1 {
-    margin-bottom: 20px;
+.home {
+    width: 300px; /* Ancho del contenedor */
+    margin: 0 auto; /* Centra el contenedor de home horizontalmente */
+    padding: 20px; /* Un margen dentro del contenedor */
+    border: 1px solid #ccc; /* Añade un borde de 1 píxel de ancho, sólido y de color gris claro */
+    border-radius: 5px; /* Redondea las esquinas del borde del contenedor */
+    background-color: #96bad7;
+}
+
+.home h2 {
+    text-align: center;
+    color: #013465;
 }
 
 .home p {
     font-size: 18px;
+    color: #013465; /* Ajusta el color del texto */
+    margin-bottom: 20px; /* Espacio debajo del párrafo */
+}
+
+.home button {
+    width: 100%;
+    padding: 10px;
+    background-color: #013465;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Transición suave para el cambio de color de fondo */
+    margin-bottom: 10px; /* Espacio entre botones */
+}
+
+.home button:hover {
+    background-color: #c9d7e5; /* Cambio de color al pasar el mouse sobre el botón */
+}
+
+.home button:active {
+    background-color: #476483; /* Cambio de color cuando se hace clic en el botón */
+}
+
+.home a {
+    display: block; /* Hace que el enlace sea un bloque */
+    text-align: center;
+    color: #96bad7;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none; /* Elimina el subrayado del enlace */
+    transition: background-color 0.3s ease; /* Transición suave para el cambio de color de fondo */
+}
+
+.home a:hover {
+    background-color: #c9d7e5; /* Cambio de color al pasar el mouse sobre el enlace */
+}
+
+.home a:active {
+    background-color: #476483; /* Cambio de color cuando se hace clic en el enlace */
 }

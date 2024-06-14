@@ -1,20 +1,22 @@
+// src/componentes/Home/Home.js
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import './Home.css';
 
 const Home = () => {
-return (
-    <div className="home">
-    <h1>Bienvenido</h1>
-    <p>This is the main content of the home page.</p>
-    <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-    >
-        Learn React
-    </a>
-    </div>
-);
+    const navigate = useNavigate();
+
+    return (
+        <div className="container">
+            <div className="home">
+                <h2>Bienvenido RINPA</h2>
+                <p>Tratamiento de agua</p>
+                <button onClick={() => navigate('/registrarEntrega')}>Registrar Entrega</button>
+                <button onClick={() => navigate('/agendarCliente')}>Agendar Cliente</button>
+                <button onClick={() => navigate('/agregarProducto')}>Agregar Producto</button>
+            </div>
+        </div>
+    );
 };
 
 export default Home;
