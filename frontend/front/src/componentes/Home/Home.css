@@ -1,67 +1,69 @@
-/* src/componentes/Home.css */
+/* src/componentes/Home/Home.css */
+
 .container {
-    display: flex; /* Utiliza Flexbox para centrar el contenido */
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    height: 100vh; /* Hace que el contenedor ocupe toda la altura de la ventana */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
     background-color: #013465;
+    background-image: linear-gradient(to bottom right, #013465, #96bad7);
 }
 
-.home {
-    width: 300px; /* Ancho del contenedor */
-    margin: 0 auto; /* Centra el contenedor de home horizontalmente */
-    padding: 20px; /* Un margen dentro del contenedor */
-    border: 1px solid #ccc; /* Añade un borde de 1 píxel de ancho, sólido y de color gris claro */
-    border-radius: 5px; /* Redondea las esquinas del borde del contenedor */
-    background-color: #96bad7;
-}
-
-.home h2 {
-    text-align: center;
+.header {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 10px 5px;
+    align-items: right;
     color: #013465;
 }
 
+.user-info {
+    margin-right: 3px;
+    margin-bottom: 3px;
+    align-items: right;
+    justify-content: right;
+    font-size: small;
+}
+
+.home {
+    width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: 30px;
+    background-color: #96bad7;
+    background-image: linear-gradient(to bottom right, #96bad7, #013465);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); 
+    text-align: center;
+}
+
+.home h2 {
+    color: #013465;
+    margin-bottom: 5px;
+}
+
 .home p {
-    font-size: 18px;
-    color: #013465; /* Ajusta el color del texto */
-    margin-bottom: 20px; /* Espacio debajo del párrafo */
+    color: #013465;
+    margin-top: 5px;
 }
 
 .home button {
     width: 100%;
     padding: 10px;
+    margin: 10px 0;
     background-color: #013465;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 35px;
     cursor: pointer;
-    transition: background-color 0.3s ease; /* Transición suave para el cambio de color de fondo */
-    margin-bottom: 10px; /* Espacio entre botones */
+    transition: background-color 0.3s ease;
 }
 
 .home button:hover {
-    background-color: #c9d7e5; /* Cambio de color al pasar el mouse sobre el botón */
+    background-color: #476483;
 }
 
 .home button:active {
-    background-color: #476483; /* Cambio de color cuando se hace clic en el botón */
-}
-
-.home a {
-    display: block; /* Hace que el enlace sea un bloque */
-    text-align: center;
-    color: #96bad7;
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 5px;
-    text-decoration: none; /* Elimina el subrayado del enlace */
-    transition: background-color 0.3s ease; /* Transición suave para el cambio de color de fondo */
-}
-
-.home a:hover {
-    background-color: #c9d7e5; /* Cambio de color al pasar el mouse sobre el enlace */
-}
-
-.home a:active {
-    background-color: #476483; /* Cambio de color cuando se hace clic en el enlace */
+    background-color: #c9d7e5;
 }

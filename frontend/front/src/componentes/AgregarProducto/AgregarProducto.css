@@ -1,24 +1,56 @@
-.container{
-    display: flex; /* Utiliza Flexbox para centrar el contenido */
-    justify-content: center; /* Centra horizontalmente */
-    align-items: center; /* Centra verticalmente */
-    height: 100vh; /* Hace que el contenedor ocupe toda la altura de la ventana */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
     background-color: #013465;
 }
-.pageProducto{
-    width: 300px; /* Ancho del contenedor */
-    margin: 0 auto; /* Centra el contenedor de home horizontalmente */
-    padding: 20px; /* Un margen dentro del contenedor */
-    border: 1px solid #ccc; /* Añade un borde de 1 píxel de ancho, sólido y de color gris claro */
-    border-radius: 5px; /* Redondea las esquinas del borde del contenedor */
+
+.pageProducto {
+    position: relative; /* Cambia a posición relativa para que los elementos absolutos se posicionen en relación con él */
+    width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 15px;
     background-color: #96bad7;
+    background-image: linear-gradient(to bottom right, #96bad7, #013465);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); /* Sombra para efecto de sobresalir */
 }
 
-.pageProducto h2{
-    color:#013465;
+.pageProducto h2 {
+    color: #013465;
+    text-align: center;
+    margin-bottom: 20px; /* Ajusta el margen inferior entre el título y el formulario */
 }
 
-.login-form{
+.login-form {
     display: flex;
     flex-direction: column;
+}
+
+/* Botón de volver */
+.back-button {
+    position: absolute; /* Mantiene la posición absoluta */
+    top: 10px;
+    right: 10px; /* Cambia left a right para posicionar en la esquina superior derecha */
+    background-color: #013465;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #476483;
+}
+
+.back-button:active {
+    background-color: #c9d7e5;
 }

@@ -1,45 +1,46 @@
 // src/componentes/Login/Login.js
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Importa useNavigate
-import './Login.css'; // importar los estilos
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../UserContext';
+import './Login.css';
 
 const Login = () => {
-    const [usuario, setUsuario] = useState('');
-    const [password, setPassword] = useState('');
-    const navigate = useNavigate(); // Inicializa useNavigate
+    const [username, setUsername] = useState('');
+    const { setUser } = useContext(UserContext);  // Asegúrate de importar useContext
+    const navigate = useNavigate();
 
-    const handleSubmit = (e) => {
+    const handleLogin = (e) => {
         e.preventDefault();
-        // Lógica para manejar el inicio de sesión
-        console.log('Usuario:', usuario);
-        console.log('Password:', password);
-        navigate('/home'); // Redirige a la página de inicio
+        setUser(username);  // Guardar el nombre de usuario en el contexto
+        navigate('/home');
     };
 
     return (
         <div className="container">
             <div className="login">
-                <h2>Bienvenido</h2>
-                <form onSubmit={handleSubmit}>
-                    <div>
-                        <label>Usuario:</label>
+                <h2>Iniciar Sesión</h2>
+                <form onSubmit={handleLogin}>
+                    <div className="form-group">
+                        <label htmlFor="username">Usuario:</label>
                         <input
                             type="text"
-                            value={usuario}
-                            onChange={(e) => setUsuario(e.target.value)}
+                            id="username"
+                            value={username}
+                            onChange={(e) => setUsername(e.target.value)}
+                            className="input-field"
                             required
                         />
                     </div>
-                    <div>
-                        <label>Contraseña:</label>
+                    <div className="form-group">
+                        <label htmlFor="password">Contraseña:</label>
                         <input
                             type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            id="password"
+                            className="input-field"
                             required
                         />
                     </div>
-                    <button type="submit">Iniciar Sesión</button>
+                    <button type="submit" className="submit-button">Iniciar Sesión</button>
                 </form>
             </div>
         </div>

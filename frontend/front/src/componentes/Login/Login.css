@@ -7,16 +7,16 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #013465;
+    background-image: linear-gradient(to bottom right, #013465, #96bad7);
 }
 
 .login {
     width: 300px;
     margin: 0 auto;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #96bad7;
+    border-radius: 30px;
+    background-image: linear-gradient(to bottom right, #96bad7,#013465);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); /* Sombra para efecto de sobresalir */
 }
 
 .login h2 {
@@ -31,15 +31,16 @@
 .login label {
     display: block;
     margin-bottom: 0px;
-    text-align: left;
     width: 100%;
     color: #013465;
+    margin-left: 3%;
 }
 
 .login input {
     width: 100%;
     padding: 8px;
     box-sizing: border-box;
+    border-radius: 35px;
 }
 
 .login input:focus {
@@ -53,7 +54,7 @@
     background-color: #013465;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 35px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }

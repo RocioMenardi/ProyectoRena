@@ -1,26 +1,27 @@
+// src/App.js
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'; // Importa las funciones necesarias
-import Login from './componentes/Login/Login'; // Ajusta la ruta al archivo Login.js
-import Home from './componentes/Home/Home'; // Ajusta la ruta al archivo Home.js
-import RegistrarEntrega from './componentes/RegistrarEntrega/RegistrarEntrega';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { UserProvider } from './componentes/UserContext';
+import Login from './componentes/Login/Login';
+import Home from './componentes/Home/Home';
 import AgendarCliente from './componentes/AgendarCliente/AgendarCliente';
 import AgregarProducto from './componentes/AgregarProducto/AgregarProducto';
+import RegistarEntrega from './componentes/RegistrarEntrega/RegistrarEntrega';
 
 function App() {
-  return (
-    <Router>
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<Navigate to="/login" />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/registrarEntrega" element={<RegistrarEntrega />} />
-          <Route path="/agendarCliente" element={<AgendarCliente />} />
-          <Route path="/agregarProducto" element={<AgregarProducto />} />
-        </Routes>
-      </div>
-    </Router>
-  );
+    return (
+        <UserProvider>
+            <Router>
+                <Routes>
+                    <Route path="/" element={<Login />} />
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/agendarCliente" element={<AgendarCliente />} />
+                    <Route path="/agregarProducto" element={<AgregarProducto/>}/>
+                    <Route path="/registrarEntrega" element={<RegistarEntrega/>}/>
+                </Routes>
+            </Router>
+        </UserProvider>
+    );
 }
 
 export default App;

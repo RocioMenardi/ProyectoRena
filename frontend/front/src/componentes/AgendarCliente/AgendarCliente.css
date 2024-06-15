@@ -11,15 +11,46 @@
 
 /* Contenedor de página */
 .page {
+    position: relative; /* Necesario para posicionar el botón de volver */
     width: 300px; /* Ancho de la página */
     max-width: 400px; /* Máximo ancho para contenido */
     padding: 20px;
     background-color: #96bad7; /* Color de fondo celeste */
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 15px;
+    background-image: linear-gradient(to bottom right, #96bad7, #013465);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); /* Sombra para efecto de sobresalir */
 }
-.page h2{
+
+.page h2 {
     color: #013465;
+    text-align: center;
+}
+
+/* Botón de volver */
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #013465;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #476483;
+}
+
+.back-button:active {
+    background-color: #c9d7e5;
 }
 
 /* Formulario */
@@ -37,14 +68,9 @@
     width: 100%;
     padding: 8px;
     box-sizing: border-box;
-    color:black;
-}
-
-/* Estilos para los labels */
-.form-group label {
-    margin-bottom: 5px; /* Espacio entre label y campo input */
-    color: #013465; /* Color de texto azul oscuro */
-    font-weight: bold; /* Texto en negrita */
+    border: none;
+    border-radius: 35px; /* Redondear los campos de entrada */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); /* Sombra para efecto de sobresalir */
 }
 
 /* Estilos para el botón de submit */
@@ -54,7 +80,7 @@
     background-color: #013465;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 35px; /* Redondear el botón */
     cursor: pointer;
     transition: background-color 0.3s ease;
 }

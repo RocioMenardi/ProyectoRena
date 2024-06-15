@@ -1,15 +1,19 @@
-// src/componentes/Home/Home.js
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../UserContext';
 import './Home.css';
 
 const Home = () => {
+    const { user } = useContext(UserContext);
     const navigate = useNavigate();
 
     return (
         <div className="container">
             <div className="home">
-                <h2>Bienvenido RINPA</h2>
+                <div className="header">
+                    {user && <div className="user-info">Bienvenido, {user}</div>}
+                </div>
+                <h2>RINPA</h2>
                 <p>Tratamiento de agua</p>
                 <button onClick={() => navigate('/registrarEntrega')}>Registrar Entrega</button>
                 <button onClick={() => navigate('/agendarCliente')}>Agendar Cliente</button>
