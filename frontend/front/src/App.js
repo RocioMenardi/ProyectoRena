@@ -7,6 +7,7 @@ import Home from './componentes/Home/Home';
 import AgendarCliente from './componentes/AgendarCliente/AgendarCliente';
 import AgregarProducto from './componentes/AgregarProducto/AgregarProducto';
 import RegistarEntrega from './componentes/RegistrarEntrega/RegistrarEntrega';
+import PrecioNafta from './componentes/PrecioNafta/PrecioNafta';
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                     <Route path="/agendarCliente" element={<AgendarCliente />} />
                     <Route path="/agregarProducto" element={<AgregarProducto/>}/>
                     <Route path="/registrarEntrega" element={<RegistarEntrega/>}/>
+                    <Route path="/precioNafta" element={<PrecioNafta/>}/>
                 </Routes>
             </Router>
         </UserProvider>

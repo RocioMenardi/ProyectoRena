@@ -18,6 +18,7 @@ const Home = () => {
                 <button onClick={() => navigate('/registrarEntrega')}>Registrar Entrega</button>
                 <button onClick={() => navigate('/agendarCliente')}>Agendar Cliente</button>
                 <button onClick={() => navigate('/agregarProducto')}>Agregar Producto</button>
+                <button onClick={() => navigate('/precioNafta')}>Precio Nafta</button>
             </div>
         </div>
     );

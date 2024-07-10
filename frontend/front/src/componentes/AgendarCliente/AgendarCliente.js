@@ -1,9 +1,9 @@
 import React from 'react';
 import '../Login/Login.css';
 import '../Home/Home.css';
-import './AgendarCliente.css';
+import './AgendarCliente.css';// Importar los estilos
 import { useNavigate } from 'react-router-dom'; // Importar useNavigate
-// Importar los estilos
+
 
 const AgendarCliente = () => {
     const navigate = useNavigate(); // Definir el hook
