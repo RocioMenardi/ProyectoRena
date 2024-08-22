@@ -10,7 +10,7 @@ class Litro(models.Model):
     cantidad = models.FloatField(null= True)
     def __str__(self): #en el admin muestre el atributo (nombre) del objeto.
         return f"{self.cantidad}"
- 
+
 class TipoProducto(models.Model):
     nombre = models.CharField(max_length=50)
     descripcion = models.TextField(null=True, blank=True) #agregue null y blanck para que no sea obligatorio poner la descripcion

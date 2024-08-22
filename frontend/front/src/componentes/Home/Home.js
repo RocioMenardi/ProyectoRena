@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../UserContext';
 import './Home.css';
+import logo from '../../imagenes/logo.jpeg'
 
 const Home = () => {
     const { user } = useContext(UserContext);
@@ -13,8 +14,8 @@ const Home = () => {
                 <div className="header">
                     {user && <div className="user-info">Bienvenido, {user}</div>}
                 </div>
-                <h2>RINPA</h2>
-                <p>Tratamiento de agua</p>
+                <button className="back-button" onClick={() => navigate(-1)}>←</button> {/* Botón de volver */}
+                <img src={logo} alt="Logo" className='logo'></img>
                 <button onClick={() => navigate('/registrarEntrega')}>Registrar Entrega</button>
                 <button onClick={() => navigate('/agendarCliente')}>Agendar Cliente</button>
                 <button onClick={() => navigate('/agregarProducto')}>Agregar Producto</button>

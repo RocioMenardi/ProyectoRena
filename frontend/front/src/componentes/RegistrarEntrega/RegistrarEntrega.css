@@ -1,0 +1,94 @@
+/* Estilos para AgendarCliente */
+
+/* Contenedor principal */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #013465; /* Color de fondo azul oscuro */
+}
+
+/* Contenedor de página */
+.page {
+    position: relative; /* Necesario para posicionar el botón de volver */
+    width: 300px; /* Ancho de la página */
+    max-width: 400px; /* Máximo ancho para contenido */
+    padding: 20px;
+    background-color: #96bad7; /* Color de fondo celeste */
+    border-radius: 15px;
+    background-image: linear-gradient(to bottom right, #96bad7, #013465);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); /* Sombra para efecto de sobresalir */
+}
+
+.page h2 {
+    color: #013465;
+    text-align: center;
+}
+
+/* Botón de volver */
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #013465;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #476483;
+}
+
+.back-button:active {
+    background-color: #c9d7e5;
+}
+
+/* Formulario */
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilos para los campos del formulario */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.input-field {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 35px; /* Redondear los campos de entrada */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); /* Sombra para efecto de sobresalir */
+}
+
+/* Estilos para el botón de submit */
+.submit-button {
+    width: 100%;
+    padding: 10px;
+    background-color: #013465;
+    color: #fff;
+    border: none;
+    border-radius: 35px; /* Redondear el botón */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #c9d7e5;
+}
+
+.submit-button:active {
+    background-color: #476483;
+}

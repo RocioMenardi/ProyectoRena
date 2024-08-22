@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'entrega',
     'producto',
     'usuario',
+    'corsheaders', #para conectar el back con el front
 ]
 
 MIDDLEWARE = [
@@ -54,7 +55,10 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware', #cors para conectar el back con el front
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True 
 
 ROOT_URLCONF = 'backend.urls'
 

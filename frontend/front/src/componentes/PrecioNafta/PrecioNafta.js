@@ -14,9 +14,10 @@ const PrecioNafta = () => {
                         <input type="text" id="precioN" name="precio" className="input-field" placeholder='$'/>
                     </div>
                 </form>
+                <button type="submit" className="submit-button">Guardar</button>
             </div>
         </div>
     );
 };
 
-export default PrecioNafta();
+export default PrecioNafta;

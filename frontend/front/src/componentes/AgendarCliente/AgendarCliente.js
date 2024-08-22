@@ -26,7 +26,7 @@ const AgendarCliente = () => {
                         <input type="text" id="telefono" name="telefono" className="input-field" placeholder='Teléfono'/>
                     </div>
                     <div className="form-group">
-                        <input type="text" id="descripcion" name="descripcion" className="input-field" placeholder='Dirección'/>
+                        <input type="text" id="descripcion" name="descripcion" className="input-field" placeholder='Descripción'/>
                     </div>
                     <button type="submit" className="submit-button">Agendar Cliente</button>
                 </form>
