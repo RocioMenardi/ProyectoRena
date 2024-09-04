@@ -3,6 +3,7 @@ import './PrecioNafta.css';
 import { useNavigate } from 'react-router-dom'; 
 
 const PrecioNafta = () => {
+    
     const navigate = useNavigate(); // Definir el hook
     return(
         <div className='container'>

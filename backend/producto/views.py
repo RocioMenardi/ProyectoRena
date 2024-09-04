@@ -7,7 +7,7 @@ from rest_framework import status
 
 class LitroAbm (APIView):
     def get(self, request): #mostrar
-        litros = Litro.objects.all() #traemos todos los objetos de la clase litro
+        litros = Litro.objects.filter(activo=True) #traemos todos los objetos de la clase litro
         data = [] #array de data
 
         for litro in litros: #recorro cada litro
@@ -58,7 +58,7 @@ class LitroAbm (APIView):
         except Litro.DoesNotExist:
             return Response({"Error":"No existe"}, status=404)#cuando un objeto no existe el error es 404
         
-        litro.delete()
+        litro.borrado()
         return Response({"Mensaje": "Litro se ha borrado con exito"})
     
 class TipoProductoAbm(APIView):

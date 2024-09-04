@@ -15,7 +15,7 @@
     justify-content: flex-end;
     width: 100%;
     padding: 10px 5px;
-    align-items: right;
+    align-items:center;
     color: #013465;
 }
 
@@ -62,31 +62,5 @@
 }
 
 .home button:active {
-    background-color: #c9d7e5;
-}
-/* Botón de volver */
-.back-button {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background-color: #013465;
-    color: #fff;
-    border: none;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    font-size: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.3s ease;
-}
-
-.back-button:hover {
-    background-color: #476483;
-}
-
-.back-button:active {
     background-color: #c9d7e5;
 }

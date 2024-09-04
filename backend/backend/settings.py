@@ -29,9 +29,15 @@ ALLOWED_HOSTS = [
     "*"
 ]
 
-
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000',
+                        'http://localhost:3000']
+CORS_ALLOWED_ORIGINS = [
+    'http://127.0.0.1:8000',
+    'http://localhost:3000'
+]
+CORS_ALLOW_ALL_HEADERS=True
+CORS_ALLOW_CREDENTIALS = True
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -58,7 +64,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware', #cors para conectar el back con el front
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True 
+
 
 ROOT_URLCONF = 'backend.urls'
 

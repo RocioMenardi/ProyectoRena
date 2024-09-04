@@ -13,8 +13,7 @@ const Home = () => {
             <div className="home">
                 <div className="header">
                     {user && <div className="user-info">Bienvenido, {user}</div>}
-                </div>
-                <button className="back-button" onClick={() => navigate(-1)}>←</button> {/* Botón de volver */}
+                </div> 
                 <img src={logo} alt="Logo" className='logo'></img>
                 <button onClick={() => navigate('/registrarEntrega')}>Registrar Entrega</button>
                 <button onClick={() => navigate('/agendarCliente')}>Agendar Cliente</button>

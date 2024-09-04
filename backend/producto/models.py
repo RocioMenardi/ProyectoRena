@@ -6,8 +6,9 @@ class ModeloBase:
         self.activo = not self.activo
         self.save()
 
-class Litro(models.Model):
+class Litro(models.Model, ModeloBase):
     cantidad = models.FloatField(null= True)
+    activo= models.BooleanField(default=True) #para borrado lógico
     def __str__(self): #en el admin muestre el atributo (nombre) del objeto.
         return f"{self.cantidad}"
 
