@@ -6,7 +6,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     background-image: linear-gradient(to bottom right, #013465, #96bad7);
 }
 

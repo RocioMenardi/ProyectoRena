@@ -1,0 +1,43 @@
+.contGeneralInfo{
+    width: 50%;
+    height: 80vh;
+    overflow: hidden;
+    overflow-y:auto;
+    display: flex;
+    align-items: center;
+    justify-content: top;
+    padding: 20px;
+    flex-direction: column;
+    gap: 20px;
+    background-image: linear-gradient(to bottom right, #96bad7, #013465);
+    border-radius: 30px;
+    
+}
+.contGeneralInfo h1{
+    color: #013465;;
+}
+
+.contInfo{
+    
+    width: 50%;
+    overflow: hidden;
+    min-height:20vh;
+    height: auto;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column ;
+    align-items: center;
+    padding-right: 20px;
+    border-radius: 20px;
+}
+
+
+@media (max-width:720px) {
+    .contGeneralInfo{
+        width: 80%;
+    }
+    .contInfo{
+        width: 80%;
+    }
+    
+}

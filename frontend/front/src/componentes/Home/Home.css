@@ -5,7 +5,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    min-height: 100vh;
+    height: auto;
     background-color: #013465;
     background-image: linear-gradient(to bottom right, #013465, #96bad7);
 }
