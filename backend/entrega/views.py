@@ -143,7 +143,7 @@ class Entregaabm(APIView):
             data.append({
                 "id": entrega.id,
                 "fecha": entrega.fecha,
-                "hora":entrega.hora,
+                "hora":entrega.hora.strftime('%H:%M'),
                 "cliente": entrega.cliente.nombre,
                 "nafta": entrega.nafta.precio_litro,
                 "usuario": entrega.usuario.nombre,
