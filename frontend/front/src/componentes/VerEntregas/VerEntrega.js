@@ -8,6 +8,7 @@ const VerEntrega =() =>{
     const [entregas, setEntregas] =  useState([]); // Estado para almacenar las entregas
 
     useEffect(() => {
+<<<<<<< HEAD
     fetch("http://127.0.0.1:8000/entrega/entrega/")
     .then(res=>res.json())
     .then(respuesta => {
@@ -18,12 +19,24 @@ const VerEntrega =() =>{
     
 },[])
 
+=======
+    
+        fetch("http://127.0.0.1:8000/entrega/entrega/")
+        .then(res=>res.json())
+        .then(respuesta => {
+            // Verifica la respuesta aquí
+            setEntregas(respuesta.entregas || []);
+        })
+        .catch(error=> console.error("error", error)) 
+    },[])
+
+    console.log("Estado de entregas:", entregas);
+>>>>>>> 2cc9c6f36f9823083d9f019a4d160f371962aaff
     return(
         <div className="container">
             <div className="contGeneralInfo">
                 <h1>Entregas</h1>
-                
-
+            
                {entregas.map((entrega, index) => (
 
                     <div className="contInfo" key={index}>
