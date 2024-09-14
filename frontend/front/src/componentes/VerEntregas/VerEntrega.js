@@ -1,6 +1,9 @@
 import "./VerEntrega.css";
 import React, { useState, useEffect } from 'react';
 
+
+
+
 const VerEntrega =() =>{
     const [entregas, setEntregas] =  useState([]); // Estado para almacenar las entregas
 
@@ -9,12 +12,11 @@ const VerEntrega =() =>{
     .then(res=>res.json())
     .then(respuesta => {
         console.log(respuesta); // Verifica la respuesta aquí
-        setEntregas(respuesta.entregas || []);
+        setEntregas(respuesta.Entregas);
     })
     .catch(error=> console.error("error", error))
     
 },[])
-
 
     return(
         <div className="container">
@@ -23,7 +25,9 @@ const VerEntrega =() =>{
                 
 
                {entregas.map((entrega, index) => (
+
                     <div className="contInfo" key={index}>
+
                         <ul>
                             <li><strong>Fecha:</strong> {entrega.fecha}</li>
                             <li><strong>Hora:</strong> {entrega.hora}</li>

@@ -1,43 +1,64 @@
 .contGeneralInfo{
-    width: 50%;
-    height: 80vh;
+    width: auto;
+    max-height: 80vh;
     overflow: hidden;
     overflow-y:auto;
-    display: flex;
-    align-items: center;
-    justify-content: top;
-    padding: 20px;
-    flex-direction: column;
-    gap: 20px;
-    background-image: linear-gradient(to bottom right, #96bad7, #013465);
+    display: flow-root;
+    padding:50px ;
+    background-image: linear-gradient(to bottom right, #96bad7, #013465) !important;
     border-radius: 30px;
-    
-}
-.contGeneralInfo h1{
-    color: #013465;;
+    /* Estilo para WebKit Browsers */
+    /* Barra de desplazamiento */
+    scrollbar-width: 5px !important; /* Tamaño de la barra de desplazamiento */
+    scrollbar-color: #8dcbfb #f0f0f0 !important; /* Color del thumb y del track */
 }
 
-.contInfo{
-    
-    width: 50%;
+.contGeneralInfo h1{
+        color: #013465;
+        text-align: center;
+    }
+
+.contInfo{  
+    width: 50vh;
     overflow: hidden;
-    min-height:20vh;
+    min-height:20vh !important;
     height: auto;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(255, 255, 255) ;
     display: flex;
     flex-direction: column ;
     align-items: center;
     padding-right: 20px;
     border-radius: 20px;
+    margin-bottom: 30px;
+    
+}
+.contInfo li{
+    margin: 10px;
+    font-size: 1.2rem;
+
 }
 
 
 @media (max-width:720px) {
+
     .contGeneralInfo{
         width: 80%;
+        display: contents;
     }
     .contInfo{
         width: 80%;
+        /* height: auto !important; */
+        height: auto !important;
+        margin-bottom: 15px;
+        
+    }
+    .contInfo ul{
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;        
+    }
+    .contInfo li{
+        font-size: 15px;
     }
     
 }
