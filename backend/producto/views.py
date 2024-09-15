@@ -147,10 +147,10 @@ class Productoabm(APIView):
         for producto in productos:
             data.append({
                 "id": producto.id,
+                "tipoProducto": producto.tipoProducto.nombre,
+                "litro": producto.litro.cantidad,
                 "costo": producto.costo,
                 "precioVenta": producto.precioVenta,
-                "litro": producto.litro.cantidad,
-                "tipoProducto": producto.tipoProducto.nombre
             })
         return Response({"Productos":data}, status=200)
     

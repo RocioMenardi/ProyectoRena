@@ -8,6 +8,8 @@ class ModeloBase:
 
 class Nafta(models.Model):
     precio_litro = models.FloatField()
+    fecha = models.DateField(auto_now_add=True, null=True)
+
     def __str__(self): #en el admin muestre el atributo (nombre) del objeto.
         return f"{self.precio_litro}"
 

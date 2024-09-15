@@ -3,6 +3,14 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Nafta, Cliente, Entrega
 from usuario.models import Usuario
+from producto.models import Producto, ProductoEntrega
+
+
+def calcularTotal(productos):
+        total=0
+        for producto in productos:
+            total+= producto.producto.precioVenta 
+        return(total)
 
 class Naftaabm(APIView):
     def get(self,request):
@@ -12,15 +20,17 @@ class Naftaabm(APIView):
         for nafta in naftas:
             data.append({
                 "id": nafta.id,
-                "precio litro": nafta.precio_litro,
+                "precio_litro": nafta.precio_litro,
+                "fecha": nafta.fecha,
             })
-        return Response({"Precio litro":data}, status=200)
+        return Response({"Precio_litro":data}, status=200)
     
     def post(self,request):
         if not "precio_litro" in request.data:
             return Response({"Error": "Falta el campo precio litro"}, status=400)
         
         precio_litro = request.data.get("precio_litro")
+
         if not Nafta.objects.filter(precio_litro=precio_litro).exists():
             naftaPrecio = Nafta.objects.create(precio_litro=precio_litro)
             return Response({"Mensaje":"Se creó con éxito", "id":naftaPrecio.id}, status=200)
@@ -64,6 +74,7 @@ class Clienteabm(APIView):
 
         for cliente in clientes:
             data.append({
+                "id":cliente.id,
                 "nombre":cliente.nombre,
                 "apellido":cliente.apellido,
                 "telefono":cliente.telefono,
@@ -135,11 +146,26 @@ class Clienteabm(APIView):
         return Response({"Mensaje": "El cliente se ha borrado con éxito","activo": cliente.activo}, status=200)
 
 class Entregaabm(APIView):
+
     def get(self,request):
-        entregas = Entrega.objects.filter(activo=True)
+
+        entregas = Entrega.objects.filter(activo=True).order_by('-id')
+        
         data = []
+        
 
         for entrega in entregas:
+            productos= entrega.productoEntrega.all()
+            # Serializar los productos
+            productos_data = []
+
+            for producto_entrega in productos:
+                productos_data.append({
+                    "producto_id": producto_entrega.producto.id,
+                    "nombre": producto_entrega.producto.tipoProducto.nombre,
+                    "cantidad": producto_entrega.producto.litro.cantidad,
+                })
+            
             data.append({
                 "id": entrega.id,
                 "fecha": entrega.fecha,
@@ -147,11 +173,15 @@ class Entregaabm(APIView):
                 "cliente": entrega.cliente.nombre,
                 "nafta": entrega.nafta.precio_litro,
                 "usuario": entrega.usuario.nombre,
+                "Total": calcularTotal(productos),
+                "productos":productos_data,
             })
+
         return Response({"Entregas":data}, status=200)
     
     def post(self,request):
-        if not all(key in request.data for key in ["fecha", "hora", "cliente", "nafta", "usuario"]):
+
+        if not all(key in request.data for key in ["cliente", "nafta", "usuario","productos"]):
             return Response({"Error": "Faltan los campos obligatorios"}, status=400)
         
         #obtengo los valores
@@ -160,6 +190,7 @@ class Entregaabm(APIView):
         cliente_id = request.data.get("cliente")
         nafta_id = request.data.get("nafta")
         usuario_id = request.data.get("usuario")
+        productos= request.data.get("productos")
 
         try:
             cliente = Cliente.objects.get(id=cliente_id)
@@ -184,7 +215,20 @@ class Entregaabm(APIView):
             nafta = nafta,
             usuario = usuario,
         )
-        return Response({"Mensaje":"La entrega se creó con éxito","id": entrega.id}, status=200)
+
+        productos_data=[]
+        for producto_id in productos:
+            try:
+                producto=Producto.objects.get(id=producto_id)
+                ProductoEntrega.objects.create(producto= producto, entrega= entrega)
+                productos_data.append({"id":producto.id, "nombre":producto.tipoProducto.nombre})
+
+            except Producto.DoesNotExist:
+                return Response({"error":f"el producto {producto_id} no existe"}, status=404)
+
+        return Response({"Mensaje":"La entrega se creó con éxito",
+                         "id": entrega.id,
+                         "productos asignados": productos_data}, status=200)
     
     def put(self,request):
         if not "id" in request.data:

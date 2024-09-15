@@ -19,8 +19,8 @@ class TipoProducto(models.Model):
         return f"{self.nombre}"
 
 class Producto(models.Model, ModeloBase):
-    costo = models.DecimalField(max_digits=10, decimal_places=2,null=True)
-    precioVenta = models.DecimalField(max_digits=10, decimal_places=2, null=True)
+    costo = models.FloatField(null=True)
+    precioVenta = models.FloatField( null=True)
     litro = models.ForeignKey(Litro, on_delete=models.SET_DEFAULT, default=0)
     tipoProducto = models.ForeignKey(TipoProducto, on_delete=models.CASCADE, related_name="productos")
     activo= models.BooleanField(default=True)
