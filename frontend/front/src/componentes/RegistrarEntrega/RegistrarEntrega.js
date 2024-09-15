@@ -11,6 +11,7 @@ const RegistrarEntrega = () => {
         fechaHora: '',
     });
     const navigate = useNavigate();
+    
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -23,18 +24,22 @@ const RegistrarEntrega = () => {
 
         // Resetea el formulario o navega a otra página según lo necesites
     };
+
     return (
         <div className="container">
             <div className="page">
                 <button className="back-button" onClick={() => navigate(-1)}>←</button> {/* Botón de volver */}
                 <h2>Registrar Entrega</h2>
                 <form className="login-form">
+
                     <div className='form-group'> 
                         <input type="text" id="nombre" name="nombre" className="input-field" placeholder='Nombre Cliente'/>
                     </div>
+
                     <div className='form-group'> 
                         <input type="text" id="nafta" name="nafta" className="input-field" placeholder='Nafta $'/>
                     </div>
+                    
                     <div className='submit'>
                         <button type='submit' className="submit-button">Guardar</button>
                     </div>

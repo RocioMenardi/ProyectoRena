@@ -5,10 +5,11 @@ import { UserProvider } from './componentes/UserContext';
 import Login from './componentes/Login/Login';
 import Home from './componentes/Home/Home';
 import AgendarCliente from './componentes/AgendarCliente/AgendarCliente';
-import AgregarProducto from './componentes/AgregarProducto/AgregarProducto';
+import AgregarProducto from './componentes/Producto/AgregarProducto/AgregarProducto';
 import RegistarEntrega from './componentes/RegistrarEntrega/RegistrarEntrega';
-import PrecioNafta from './componentes/PrecioNafta/PrecioNafta';
+import PrecioNafta from './componentes/nafta/PrecioNafta/PrecioNafta';
 import VerEntrega from './componentes/VerEntregas/VerEntrega';
+import ListaNafta from './componentes/nafta/listaNafta/listaNafta';
 
 function App() {
     return (
@@ -22,6 +23,7 @@ function App() {
                     <Route path="/registrarEntrega" element={<RegistarEntrega/>}/>
                     <Route path="/precioNafta" element={<PrecioNafta/>}/>
                     <Route path="/verEntrega" element={<VerEntrega/>}/>
+                    <Route path="/listaNafta" element={<ListaNafta/>}/>
                 </Routes>
             </Router>
         </UserProvider>

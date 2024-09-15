@@ -25,6 +25,7 @@
 .page h2 {
     color: #013465;
     text-align: center;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.323);
 }
 
 /* Botón de volver */
