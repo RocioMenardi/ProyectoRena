@@ -1,0 +1,55 @@
+.barra{
+    width: 15vh !important;
+    height: 1vh !important;
+    border-radius: 30px !important;
+    padding: 10px;
+    background-color: #d1b89441;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.204);
+    border: 2px solid rgba(255, 255, 255, 0.447);
+    text-align: center;
+    z-index: 12;
+    margin-left: 33%;
+    color: black;
+}
+
+.barra:hover {
+    background-color: #F4EBDA; /* Cambia el color de fondo cuando pasas el ratón */
+}
+.barra::placeholder {
+    color: white; /* Cambia el color del texto del placeholder a blanco */
+    opacity: 1; /* Asegúrate de que la opacidad sea total */
+  }
+
+.clicked{
+    width: 50%;
+    height: 1vh !important;
+    margin-left: 23%;
+    border-radius: 30px !important;
+    padding: 10px;
+    background-color: #F4EBDA;
+    /* box-shadow: 0 0 10px rgba(255, 255, 255, 0.204); */
+    border: 2px solid rgba(255, 255, 255, 0.447);
+    text-align: left;
+    z-index: 12;
+}
+
+@media (max-width:740px){
+    .barra{
+        width: 10vh !important;
+        margin-left: 0;
+    }
+    .clicked{
+        width: 40vh ;
+        margin-left: 0;
+    }
+}
+@media (max-width:375px){
+    .barra{
+        width: 12vh !important;
+        min-height:1vh ;
+    }
+    .clicked{
+        width: 40vh ;
+        min-height: 1vh;
+    }
+}
