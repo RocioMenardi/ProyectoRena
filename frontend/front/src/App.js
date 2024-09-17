@@ -10,7 +10,7 @@ import RegistarEntrega from './componentes/RegistrarEntrega/RegistrarEntrega';
 import PrecioNafta from './componentes/nafta/PrecioNafta/PrecioNafta';
 import VerEntrega from './componentes/VerEntregas/VerEntrega';
 import ListaNafta from './componentes/nafta/listaNafta/listaNafta';
-
+import VerProductos from './componentes/Producto/verProductos/VerProductos';
 function App() {
     return (
         <UserProvider>
@@ -24,6 +24,7 @@ function App() {
                     <Route path="/precioNafta" element={<PrecioNafta/>}/>
                     <Route path="/verEntrega" element={<VerEntrega/>}/>
                     <Route path="/listaNafta" element={<ListaNafta/>}/>
+                    <Route path="/verProductos" element={<VerProductos/>}/>
                 </Routes>
             </Router>
         </UserProvider>

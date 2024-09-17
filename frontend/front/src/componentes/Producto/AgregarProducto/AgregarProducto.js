@@ -3,7 +3,7 @@ import React,{useEffect, useState} from 'react';
 import './AgregarProducto.css';
 import '../../Login/Login.css';
 import '../../Home/Home.css';
-import { Link, useNavigate } from 'react-router-dom'; // Importar useNavigate
+import { Link } from 'react-router-dom'; // Importar useNavigate
 
 const AgregarProducto = () => {
 
@@ -93,12 +93,11 @@ const AgregarProducto = () => {
     };
 
 
-    const navigate = useNavigate(); // Definir el hook
     return (
         <div className="container">
             <div className="pageProducto">
-                <button >
-                    <Link to="/home" className="back-button">←</Link>    
+                <button>
+                    <Link to="/verProductos" className="back-button">←</Link>    
                 </button> 
 
                 <h2>Agregar Producto</h2>
@@ -112,7 +111,7 @@ const AgregarProducto = () => {
 
                         value={selectedTipoProducto} // Establecer valor seleccionado
 
-                        onChange={(e) => setSelectedTipoProducto(e.target.value)}>// Actualizar el estado
+                        onChange={(e) => setSelectedTipoProducto(e.target.value)}>
 
                             <option value="">Seleccione un tipo de producto</option>
                             {tipoProducto.map((tipo, idx) => (

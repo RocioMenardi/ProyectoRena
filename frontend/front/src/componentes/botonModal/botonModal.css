@@ -1,0 +1,23 @@
+.contenedorModal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: auto;
+  height: auto;
+  padding: 30px;
+  background-color: white;
+  border-radius: 15px;
+  box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.1); /* Ejemplo de sombra */
+}
+.botonModal{
+  background-color: #96bad79c !important;
+  width: 30vh;
+  margin-bottom: 5px !important;
+  border-radius: 50px !important;
+}
+@media (max-width:730px){
+  .contenedorModal {
+    width: 70%;
+  }
+}

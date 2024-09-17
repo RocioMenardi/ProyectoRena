@@ -1,6 +1,7 @@
 import "./VerEntrega.css";
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import BotonModal from "../botonModal/BotonModal";
 
 
 
@@ -13,11 +14,9 @@ const VerEntrega =() =>{
     };
 
     useEffect(() => {
-        console.log(isMobileDevice())
     fetch("http://127.0.0.1:8000/entrega/entrega/")
     .then(res=>res.json())
     .then(respuesta => {
-        console.log(respuesta.Entregas)
         setEntregas(respuesta.Entregas);
     })
     .catch(error=> console.error("error", error))
@@ -41,14 +40,12 @@ const VerEntrega =() =>{
 
                         <ul>
                             <li><strong>Usuario:</strong> {entrega.usuario}</li>
-                            <li><strong>Fecha:</strong> {entrega.hora}hs : {entrega.fecha}</li>
+                            <li><strong>Fecha:</strong> {entrega.fecha} : {entrega.hora}hs</li>
                             <li><strong>Cliente:</strong> {entrega.cliente}</li>
                             <li><strong>Monto total:</strong> ${entrega.Total}</li>
-                            <li><strong>Nafta (Precio por Litro):</strong> {entrega.nafta}</li>
-                            {entrega.productos.map((producto,idx)=>(
-                                <li key={idx}><strong>Producto:</strong> {producto.nombre} : {producto.cantidad}L</li>
-                            ))}
+            
                         </ul>
+                        <BotonModal entrega={entrega}></BotonModal>
                     </div>
                ))}
             
