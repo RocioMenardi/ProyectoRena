@@ -141,7 +141,7 @@ class TipoProductoAbm(APIView):
 
 class Productoabm(APIView):
     def get(self,request):
-        productos = Producto.objects.filter(activo=True) #cambie el all() por el filter.
+        productos = Producto.objects.filter(activo=True).order_by('-id') #cambie el all() por el filter.
         data = []
 
         for producto in productos:
@@ -151,6 +151,7 @@ class Productoabm(APIView):
                 "litro": producto.litro.cantidad,
                 "costo": producto.costo,
                 "precioVenta": producto.precioVenta,
+                "fechaCreacion": producto.fechaCreacion.strftime('%Y-%m-%d'),
             })
         return Response({"Productos":data}, status=200)
     

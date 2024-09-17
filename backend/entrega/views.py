@@ -164,6 +164,7 @@ class Entregaabm(APIView):
                     "producto_id": producto_entrega.producto.id,
                     "nombre": producto_entrega.producto.tipoProducto.nombre,
                     "cantidad": producto_entrega.producto.litro.cantidad,
+                    "precioVenta":producto_entrega.producto.precioVenta
                 })
             
             data.append({

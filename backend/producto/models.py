@@ -1,5 +1,6 @@
 from django.db import models
 from entrega.models import Entrega
+from django.utils import timezone
 
 class ModeloBase:
     def borrado(self):
@@ -23,6 +24,7 @@ class Producto(models.Model, ModeloBase):
     precioVenta = models.FloatField( null=True)
     litro = models.ForeignKey(Litro, on_delete=models.SET_DEFAULT, default=0)
     tipoProducto = models.ForeignKey(TipoProducto, on_delete=models.CASCADE, related_name="productos")
+    fechaCreacion = models.DateTimeField(default=timezone.now)
     activo= models.BooleanField(default=True)
     def __str__(self): #en el admin muestre el atributo (nombre) del objeto.
         return f"{self.tipoProducto.nombre} - {self.litro.cantidad} L"
