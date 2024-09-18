@@ -2,7 +2,9 @@ import "./VerEntrega.css";
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BotonModal from "../botonModal/BotonModal";
-
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 
 const VerEntrega =() =>{
@@ -45,7 +47,15 @@ const VerEntrega =() =>{
                             <li><strong>Monto total:</strong> ${entrega.Total}</li>
             
                         </ul>
+                        <div className='contBotonesEntrega'>
+                                <IconButton aria-label="delete">
+                                    <DeleteIcon />
+                                </IconButton>
                         <BotonModal entrega={entrega}></BotonModal>
+                                <IconButton aria-label="edit">
+                                    <EditIcon />
+                                </IconButton>
+                        </div>
                     </div>
                ))}
             

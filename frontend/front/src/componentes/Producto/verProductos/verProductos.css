@@ -1,8 +1,8 @@
 .contenedorProductos{
-    min-width: 30vh;
+    min-width: 56vh;
     width: auto;
-    min-height: 40vh;
-    max-height: 80vh;
+    min-height: 70vh;
+    max-height: 70vh;
     overflow: hidden;
     overflow-y:auto;
     display: flow-root;
@@ -21,6 +21,7 @@
     text-align: center;
     margin: 0;
     margin-top: -30px;
+    margin-bottom: 10px;
 }
 
 .contProducto{
@@ -31,14 +32,16 @@
     background-color: rgb(255, 255, 255) ;
     display: flex;
     flex-direction: column ;
+    justify-content: center;
     padding: 20px;
+    padding-bottom: 0;
     border-radius: 20px;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 .contProducto li{
     margin: 10px;
     font-size: 1.2rem;
-    
+     
 }
 
 .contProducto p{
@@ -50,8 +53,18 @@
     width: 100%;
     color: white;
     margin-bottom: -5px;
+    padding: 5px;
 }
 
+.contBotones{
+    width: 100%;
+    height: auto;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    gap: 60%; 
+}
 
 @media (max-width:720px) {
 

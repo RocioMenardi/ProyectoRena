@@ -2,6 +2,9 @@ import React,{useEffect, useState} from 'react'
 import './verProductos.css'
 import { useNavigate } from 'react-router-dom';
 import Buscador from '../../buscador/buscador';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 
 
 const VerProductos = () => {
@@ -60,7 +63,16 @@ const VerProductos = () => {
                                 <li><strong>Precio venta:</strong> ${producto.precioVenta}</li>
 
                             </ul>
+                            <div className='contBotones'>
+                                <IconButton aria-label="delete">
+                                    <DeleteIcon />
+                                </IconButton>
+                                <IconButton aria-label="edit">
+                                    <EditIcon />
+                                </IconButton>
+                            </div>
                         </div>
+                        
                         ))}
            </div>
            {isMobileDevice()===false && <button onClick={() => navigate('/agregarProducto')} className='button'>Registrar Producto</button>}
