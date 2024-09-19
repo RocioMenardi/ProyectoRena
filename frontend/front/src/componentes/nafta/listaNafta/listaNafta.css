@@ -1,11 +1,11 @@
 
 .contGeneralInfoPrecioNafta{
-    width: auto;
+    width: 50vh;
     min-width: 30vh;
     height: 60vh;
     overflow: hidden;
     overflow-y:auto;
-    display: flow-root;
+    display:flow-root;
     padding:30px ;
     background-image: linear-gradient(to bottom right, #96bad7, #013465) !important;
     border-radius: 30px;
@@ -15,10 +15,9 @@
 }
 
 .contInfoPrecioNafta{
-    width: 35vh;
+    width: 80%;
     overflow: hidden;
-    overflow-y: auto;
-    min-height:7vh !important;
+    min-height:11vh !important;
     height: auto;
     background-color: rgb(255, 255, 255) ;
     display: flex;
@@ -27,6 +26,7 @@
     padding-right: 20px;
     border-radius: 20px;
     margin-bottom: 30px;
+    margin-left: 8%;
      
 }
 

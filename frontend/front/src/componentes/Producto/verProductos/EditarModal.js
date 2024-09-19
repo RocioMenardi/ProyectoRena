@@ -1,17 +1,30 @@
-// src/componentes/AgregarProducto.js
-import React,{useEffect, useState} from 'react';
-import './AgregarProducto.css';
-import '../../Login/Login.css';
-import '../../Home/Home.css';
-import { Link } from 'react-router-dom'; // Importar useNavigate
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogTitle from '@mui/material/DialogTitle';
+import IconButton from '@mui/material/IconButton';
+import EditIcon from '@mui/icons-material/Edit';
+import { useEffect } from 'react';
 
-const AgregarProducto = () => {
-    const [tipoProducto, setTipoProducto] =  useState([]);
-    const [litros, setLitros] =  useState([]);
-    const [costo, setCosto] = useState('');
-    const [precioVenta, setPrecioVenta] = useState('');
-    const [selectedTipoProducto, setSelectedTipoProducto] = useState('');
-    const [selectedLitros, setSelectedLitros] = useState('');
+
+
+export default function Put({ id, producto, productUpdate }) {
+    const [tipoProducto, setTipoProducto] =  React.useState([]);
+    const [litros, setLitros] =  React.useState([]);
+    const [costo, setCosto] = React.useState('');
+    const [precioVenta, setPrecioVenta] = React.useState('');
+    const [selectedTipoProducto] = React.useState('');
+    const [selectedLitros, setSelectedLitros] = React.useState('');
+    const [open, setOpen] = React.useState(false);
+  
+    const handleClickOpen = () => {
+      setOpen(true);
+    };
+    
+    const handleClose = () => {
+      setOpen(false);
+    };
 
     // Tipo Producto
     useEffect(() => {
@@ -24,7 +37,6 @@ const AgregarProducto = () => {
         .catch(error=> console.error("error", error))
         
     },[])
-    
     // Litros
     useEffect(() => {
         fetch("http://127.0.0.1:8000/producto/litro/")
@@ -36,9 +48,26 @@ const AgregarProducto = () => {
         .catch(error=> console.error("error", error))
     },[])
 
+    //Cargar datos del producto
+    useEffect(() => {
+        if (producto) {
+          setCosto(producto.costo);
+          setPrecioVenta(producto.precioVenta);
+          
+          for(const litroFor of litros){
+            if(producto.litro=== litroFor.cantidad){
+                setSelectedLitros(litroFor.id)
+                console.log("entro litro")
+            }
+          }
+        }
+      }, []);
+      
 
-    const handlePost = async (e) => {
+      //PUT
+    const handlePut = async (e) => {
         e.preventDefault();
+        // const producto_id = { id }; 
         const costoFloat = parseFloat(costo); // Convertir a flotante
         const precioFloat = parseFloat(precioVenta); // Convertir a flotante
         
@@ -51,24 +80,18 @@ const AgregarProducto = () => {
             alert('Por favor ingresa un valor correcto para el costo.');
             return;
         }
-        if(selectedLitros===""){
-            alert("seleccione un litro")
-        }
-        if(selectedTipoProducto===""){
-            alert("seleccione un tipo de producto")
-        }
+        
         // Datos a enviar
         const data = {
-            tipoProducto: selectedTipoProducto,
+            id:id,
             litro: selectedLitros,
             costo: costoFloat,
             precioVenta: precioFloat
             
         };
-        
         try {
             const response = await fetch("http://127.0.0.1:8000/producto/producto/", {
-                method: "POST",
+                method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -76,31 +99,32 @@ const AgregarProducto = () => {
             });
     
             if (response.ok) {
-                console.log("Producto agregado con éxito");
-                alert("Producto registrado exitosamente")
-                // Reseteo los estados a sus valores por defecto (reset del formulario)
-                setSelectedTipoProducto("");
-                setSelectedLitros("");
-                setCosto("");
-                setPrecioVenta("");
+                const updatedProduct = await response.json();
+                alert("Producto editado exitosamente")
+                setOpen(false);
+                productUpdate(updatedProduct)
+
             } else {
-                console.error("Hubo un error al agregar el producto");
+                console.error("Hubo un error al editar el producto");
             }
         } catch (error) {
             console.error("Error en la solicitud:", error);
         }
     };
 
-
     return (
-        <div className="container">
-            <div className="pageProducto">
-                <button>
-                    <Link to="/verProductos" className="back-button">←</Link>    
-                </button> 
+      <React.Fragment >
+        
+        <IconButton aria-label="edit" onClick={handleClickOpen} >
+            <EditIcon />
+        </IconButton>
+  
+        <Dialog open={open} onClose={handleClose} >
+            
+        <div style={{backgroundColor:"white", padding:"10px"}}>
 
-                <h2>Agregar Producto</h2>
-
+          <DialogTitle>{producto.tipoProducto} {producto.litro}L</DialogTitle>
+     
                 <form className="login-form" >
 
                     <div className="form-group">
@@ -110,12 +134,13 @@ const AgregarProducto = () => {
 
                         value={selectedTipoProducto} // Establecer valor seleccionado
 
-                        onChange={(e) => setSelectedTipoProducto(e.target.value)}>
-
-                            <option value="">Seleccione un tipo de producto</option>
+                        disabled={true}
+                        >
+                            <option value={selectedTipoProducto}>{producto.tipoProducto}</option>
                             {tipoProducto.map((tipo, idx) => (
                                 <option key={idx} value={tipo.id}>{tipo.nombre}</option>
                             ))}
+
                         </select>
 
                     </div>
@@ -123,10 +148,14 @@ const AgregarProducto = () => {
                     <div className="form-group">
                         <select type="text" id="litros" name="litros" 
                         className="input-field" placeholder='Litros'
-                        value={selectedLitros} // Establecer valor seleccionado
-                        onChange={(e) => setSelectedLitros(e.target.value)}>
+                        value={selectedLitros.id} // Establecer valor seleccionado
+
+                        onChange={(e) =>{
+                            const value = e.target.value;
+                            setSelectedLitros(value || {selectedLitros}); 
+                          }}>
                            
-                            <option value="">Seleccione los litros</option>
+                            <option value="">Cantidad </option>
                             {litros.map((litro, idx) => (
                                 <option key={idx} value={litro.id}>{litro.litro} L</option>
                             ))}
@@ -136,6 +165,7 @@ const AgregarProducto = () => {
                     </div>
 
                     <div className="form-group">
+                        <label htmlFor="costo" style={{fontSize:"0.8rem", marginLeft:"5px"}}>Costo</label>
                         <input type="text" id="costo" name="costo" 
                         className="input-field" placeholder="Costo"
                         value={costo}
@@ -143,19 +173,21 @@ const AgregarProducto = () => {
                     </div>
 
                     <div className="form-group">
+                        <label htmlFor="precioVenta" style={{fontSize:"0.8rem", marginLeft:"5px"}}>Precio venta</label>
                         <input type="text" id="precioVenta" name="precioVenta" 
                         className="input-field" placeholder='Precio venta'
                         value={precioVenta}
                         onChange={(e) => setPrecioVenta(e.target.value)}/>
                     </div>
-
-                    <button type="submit" className="submit-button" onClick={handlePost}>Agregar Producto</button>
                 </form>
-
-            </div>
-        </div>
-
+                
+          <DialogActions>
+            <Button onClick={handleClose}>Cancelar</Button>
+            <Button onClick={handlePut}>Editar</Button>
+          </DialogActions>
+          </div>
+        </Dialog>
+        
+      </React.Fragment>
     );
-};
-
-export default AgregarProducto;
+  }

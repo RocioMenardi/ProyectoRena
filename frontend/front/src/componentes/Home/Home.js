@@ -15,8 +15,9 @@ const Home = () => {
                 <div className="header">
                     {User && <div className="user-info">Bienvenido, {User}</div>}
                 </div> 
+
                 <div className='logo2'></div>
-                {/* <img src={logo} alt="Logo" className='logo'></img> */}
+
                 <button onClick={() => navigate('/verEntrega')}>Ver Entregas</button>
                 <button onClick={() => navigate('/registrarEntrega')}>Registrar Entrega</button>
                 <button onClick={() => navigate('/agendarCliente')}>Agendar Cliente</button>

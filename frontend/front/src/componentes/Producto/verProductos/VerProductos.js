@@ -2,9 +2,8 @@ import React,{useEffect, useState} from 'react'
 import './verProductos.css'
 import { useNavigate } from 'react-router-dom';
 import Buscador from '../../buscador/buscador';
-import IconButton from '@mui/material/IconButton';
-import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
+import Delete from './EliminarModal';
+import Put from './EditarModal';
 
 
 const VerProductos = () => {
@@ -14,11 +13,13 @@ const VerProductos = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredProductos, setFilteredProductos] = useState([]);
     
+    
 
     const isMobileDevice = () => {
         return /Mobi|Android/i.test(navigator.userAgent) || window.innerWidth <= 768;
     };
 
+    //GET
     useEffect(() => {
     fetch("http://127.0.0.1:8000/producto/producto/")
     .then(res=>res.json())
@@ -30,16 +31,33 @@ const VerProductos = () => {
     .catch(error=> console.error("error", error))
     },[])
 
-    
+    //BUSCADOR
     useEffect(() => {
         // Filtrar los libros en función del término de búsqueda
         setFilteredProductos(productos.filter((item) =>
           item.tipoProducto.toLowerCase().includes(searchTerm.toLowerCase())
         ));
+
       }, [searchTerm]);
     
       const handleSearchChange = (term) => {
         setSearchTerm(term);
+      };
+     
+    const handleProductDelete = (id) => {
+        const updatedProductos = productos.filter((producto) => producto.id !== id);
+        setProductos(updatedProductos);
+        setFilteredProductos(updatedProductos);
+      };
+
+    const handleProductUpdate = (updatedProduct) => {
+        // Actualizar el producto en la lista de productos
+        const updatedProductos = productos.map((producto) =>
+          producto.id === updatedProduct.id ? updatedProduct : producto
+        );
+        // Actualizar los estados con la nueva lista
+        setProductos(updatedProductos);
+        setFilteredProductos(updatedProductos);
       };
     
     return(
@@ -64,13 +82,11 @@ const VerProductos = () => {
 
                             </ul>
                             <div className='contBotones'>
-                                <IconButton aria-label="delete">
-                                    <DeleteIcon />
-                                </IconButton>
-                                <IconButton aria-label="edit">
-                                    <EditIcon />
-                                </IconButton>
+                                <Delete id={producto.id} onDelete={handleProductDelete}> 
+                                </Delete>
+                                <Put producto={producto} id={producto.id} productUpdate={handleProductUpdate}></Put>
                             </div>
+                            
                         </div>
                         
                         ))}

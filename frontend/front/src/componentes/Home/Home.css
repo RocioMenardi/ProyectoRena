@@ -6,7 +6,6 @@
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    /* min-height:; */
     height: 100%;
     background-color: #013465;
     background-image: linear-gradient(to bottom right, #013465, #96bad7);
@@ -47,13 +46,6 @@
     gap: 10px;
 }
 
-.logo {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    object-fit: cover;
-} 
-
 .logo2{
     width: 20vh;
     height: 20vh;
@@ -87,4 +79,10 @@
 
 .home button:active {
     background-color: #c9d7e5;
+}
+
+@media (max-width:730px){
+    .home{
+        width: 80%;
+    }
 }
