@@ -201,12 +201,19 @@ class Productoabm(APIView):
         if "precioVenta" in request.data:
             producto.precioVenta = request.data.get("precioVenta")
         if "litro" in request.data:
-            producto.litro = request.data.get("litro")
+            litro= Litro.objects.get(id=request.data.get("litro"))
+            producto.litro = litro
         if "tipoProducto" in request.data:
-            producto.tipoProducto.nombre = request.data.get("tipoProducto")
+            tipo= TipoProducto.objects.get(id=request.data.get("tipoProducto"))
+            producto.tipoProducto = tipo
         
         producto.save()
-        return Response({"Mensaje":"Se modificó con exito el producto"}, status=200)
+        return Response({
+                         "id": producto.id,
+                        "tipoProducto": producto.tipoProducto.nombre,
+                        "litro": producto.litro.cantidad,
+                        "costo": producto.costo,
+                        "precioVenta": producto.precioVenta,}, status=200)
     
     def delete(self, request):
         if not "id" in request.data:
