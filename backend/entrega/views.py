@@ -13,6 +13,7 @@ def calcularTotal(productos):
             total+= producto.producto.precioVenta 
         return(total)
 
+
 class Naftaabm(APIView):
     def get(self,request):
         naftas = Nafta.objects.all() #obtengo todas las naftas
@@ -173,12 +174,15 @@ class Entregaabm(APIView):
                 })
             
             nombre_cliente= f"{entrega.cliente.nombre} {entrega.cliente.apellido}"
+            gasto= entrega.nafta.precio_litro * entrega.litrosGastados
+
             data.append({
                 "id": entrega.id,
                 "fecha": entrega.fecha,
                 "hora":entrega.hora.strftime('%H:%M'),
                 "cliente": nombre_cliente,
                 "nafta": entrega.nafta.precio_litro,
+                "gastoNafta": gasto,
                 "usuario": entrega.usuario.nombre,
                 "Total": calcularTotal(productos),
                 "productos":productos_data,
@@ -215,12 +219,16 @@ class Entregaabm(APIView):
             return Response({"Error":"No existe el usuario"}, status=404)
         
         #crear entrega
+        if "litrosGastados" in request.data:
+            litrosGastados = request.data.get("litrosGastados")
+            
         entrega = Entrega.objects.create(
             fecha = fecha,
             hora = hora,
             cliente = cliente,
             nafta = nafta,
             usuario = usuario,
+            litrosGastados= litrosGastados,
         )
 
         productos_data=[]
@@ -259,6 +267,8 @@ class Entregaabm(APIView):
             entrega.nafta = request.data.get("nafta")
         if "usuario" in request.data:
             entrega.usuario = request.data.get("usuario")
+        if "litrosGastados" in request.data:
+            entrega.litrosGastados = request.data.get("litrosGastados")
 
         entrega.save()
         return Response({"Mensaje": "La entrega se modificó con éxito"}, status=200)

@@ -30,6 +30,7 @@ class Entrega(models.Model, ModeloBase):
     nafta = models.ForeignKey(Nafta, on_delete=models.SET_DEFAULT, default=0)
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name="entregasUsuario", null=True)
     activo = models.BooleanField(default=True)
+    litrosGastados= models.FloatField(null=True, blank=True, default= 0)
     
     def __str__(self): #en el admin muestre el atributo (nombre) del objeto.
             return f"{self.cliente.nombre} {self.cliente.apellido} {self.fecha}"
