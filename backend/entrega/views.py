@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.pagination import PageNumberPagination
 from .models import Nafta, Cliente, Entrega
 from usuario.models import Usuario
 from producto.models import Producto, ProductoEntrega
@@ -151,10 +152,14 @@ class Entregaabm(APIView):
 
         entregas = Entrega.objects.filter(activo=True).order_by('-id')
         
+        paginator = PageNumberPagination()
+        paginator.page_size = 15  # Puedes ajustar el tamaño de la página según sea necesario
+        paginated_entregas = paginator.paginate_queryset(entregas, request)
+
         data = []
         
 
-        for entrega in entregas:
+        for entrega in paginated_entregas:
             productos= entrega.productoEntrega.all()
             # Serializar los productos
             productos_data = []
@@ -167,18 +172,19 @@ class Entregaabm(APIView):
                     "precioVenta":producto_entrega.producto.precioVenta
                 })
             
+            nombre_cliente= f"{entrega.cliente.nombre} {entrega.cliente.apellido}"
             data.append({
                 "id": entrega.id,
                 "fecha": entrega.fecha,
                 "hora":entrega.hora.strftime('%H:%M'),
-                "cliente": entrega.cliente.nombre,
+                "cliente": nombre_cliente,
                 "nafta": entrega.nafta.precio_litro,
                 "usuario": entrega.usuario.nombre,
                 "Total": calcularTotal(productos),
                 "productos":productos_data,
             })
 
-        return Response({"Entregas":data}, status=200)
+        return paginator.get_paginated_response({"Entregas": data})
     
     def post(self,request):
 
