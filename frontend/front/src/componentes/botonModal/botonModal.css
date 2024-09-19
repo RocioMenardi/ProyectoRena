@@ -9,15 +9,20 @@
   background-color: white;
   border-radius: 15px;
   box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.1); /* Ejemplo de sombra */
+  
 }
 .botonModal{
-  background-color: #96bad79c !important;
+  background-color: #96bad7e3 !important;
   width: 30vh;
   margin-bottom: 5px !important;
   border-radius: 50px !important;
+  
 }
 @media (max-width:730px){
   .contenedorModal {
     width: 70%;
+  }
+  .botonModal{
+    width: 20vh;
   }
 }

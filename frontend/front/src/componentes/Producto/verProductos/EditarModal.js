@@ -6,6 +6,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 import IconButton from '@mui/material/IconButton';
 import EditIcon from '@mui/icons-material/Edit';
 import { useEffect } from 'react';
+import Url from '../../../utils/url';
+
 
 
 
@@ -28,7 +30,7 @@ export default function Put({ id, producto, productUpdate }) {
 
     // Tipo Producto
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/producto/tipoProducto/")
+        fetch(`${Url}/producto/tipoProducto/`)
 
         .then(res=>res.json())
         .then(respuesta => {
@@ -39,7 +41,7 @@ export default function Put({ id, producto, productUpdate }) {
     },[])
     // Litros
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/producto/litro/")
+        fetch(`${Url}/producto/litro/`)
 
         .then(res=>res.json())
         .then(respuesta => {
@@ -90,7 +92,7 @@ export default function Put({ id, producto, productUpdate }) {
             
         };
         try {
-            const response = await fetch("http://127.0.0.1:8000/producto/producto/", {
+            const response = await fetch(`${Url}/producto/producto/`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",

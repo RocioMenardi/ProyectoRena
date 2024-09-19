@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './listaNafta.css';
 import { useNavigate } from 'react-router-dom';
+import Url from '../../../utils/url';
 
 
 const ListaNafta =() =>{
     const [precios, setPrecios] =  useState([]); // Estado para almacenar las entregas
     const navigate = useNavigate();
     useEffect(() => {
-    fetch("http://127.0.0.1:8000/entrega/nafta/")
+    fetch(`${Url}/entrega/nafta/`)
     .then(res=>res.json())
     .then(respuesta => {
         setPrecios(respuesta.Precio_litro);

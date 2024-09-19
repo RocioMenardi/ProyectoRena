@@ -5,7 +5,7 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
-import Paper from '@mui/material/Paper';
+import Url from '../../../utils/url';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 
@@ -27,7 +27,7 @@ export default function Delete({ id, onDelete }) {
       const data = { id }; // El ID viene como prop
   
       try {
-        const response = await fetch("http://127.0.0.1:8000/producto/producto/", {
+        const response = await fetch(`${Url}/producto/producto/`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",

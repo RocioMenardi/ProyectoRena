@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Buscador from '../../buscador/buscador';
 import Delete from './EliminarModal';
 import Put from './EditarModal';
+import Url from '../../../utils/url';
 
 
 const VerProductos = () => {
@@ -13,7 +14,6 @@ const VerProductos = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredProductos, setFilteredProductos] = useState([]);
     
-    
 
     const isMobileDevice = () => {
         return /Mobi|Android/i.test(navigator.userAgent) || window.innerWidth <= 768;
@@ -21,7 +21,7 @@ const VerProductos = () => {
 
     //GET
     useEffect(() => {
-    fetch("http://127.0.0.1:8000/producto/producto/")
+    fetch(`${Url}/producto/producto/`)
     .then(res=>res.json())
     .then(respuesta => {
         setProductos(respuesta.Productos);
@@ -34,16 +34,21 @@ const VerProductos = () => {
     //BUSCADOR
     useEffect(() => {
         // Filtrar los libros en función del término de búsqueda
-        setFilteredProductos(productos.filter((item) =>
-          item.tipoProducto.toLowerCase().includes(searchTerm.toLowerCase())
-        ));
+        setFilteredProductos(productos.filter((item) =>{
 
-      }, [searchTerm]);
+          const tipoProducto = item.tipoProducto ? item.tipoProducto.toLowerCase() : '';
+          const litro = item.litro ? item.litro.toString() : '';
+
+          return tipoProducto.includes(searchTerm.toLowerCase()) || litro.includes(searchTerm);
+        }));
+
+      }, [searchTerm, productos]);
     
       const handleSearchChange = (term) => {
         setSearchTerm(term);
       };
-     
+    
+      //DELETE
     const handleProductDelete = (id) => {
         const updatedProductos = productos.filter((producto) => producto.id !== id);
         setProductos(updatedProductos);

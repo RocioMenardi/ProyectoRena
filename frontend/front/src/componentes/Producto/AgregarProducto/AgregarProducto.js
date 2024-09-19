@@ -4,6 +4,7 @@ import './AgregarProducto.css';
 import '../../Login/Login.css';
 import '../../Home/Home.css';
 import { Link } from 'react-router-dom'; // Importar useNavigate
+import Url from '../../../utils/url';
 
 const AgregarProducto = () => {
     const [tipoProducto, setTipoProducto] =  useState([]);
@@ -15,7 +16,7 @@ const AgregarProducto = () => {
 
     // Tipo Producto
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/producto/tipoProducto/")
+        fetch(`${Url}/producto/tipoProducto/`)
 
         .then(res=>res.json())
         .then(respuesta => {
@@ -27,7 +28,7 @@ const AgregarProducto = () => {
     
     // Litros
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/producto/litro/")
+        fetch(`${Url}/producto/litro/`)
 
         .then(res=>res.json())
         .then(respuesta => {
@@ -67,7 +68,7 @@ const AgregarProducto = () => {
         };
         
         try {
-            const response = await fetch("http://127.0.0.1:8000/producto/producto/", {
+            const response = await fetch(`${Url}/producto/producto/`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
