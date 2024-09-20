@@ -6,6 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
 import Url from "../../utils/url";
+import Delete from "./EliminarEntrega";
 
 
 const VerEntrega =() =>{
@@ -31,7 +32,6 @@ const VerEntrega =() =>{
 
           .then((res) => res.json())
           .then((respuesta) => {
-
             if (!primeraConsul) { //en caso de ser la primera consulata
                 setEntregas(respuesta.results.Entregas); //setea la const entrega
                 setPrimeraConsul(true); // Y  cambia el estado de la primera consulata para que no vuelva a entrar aca
@@ -95,6 +95,24 @@ const VerEntrega =() =>{
       };
 }
 
+    //DELETE
+    const handleEntregaDelete = (id) => {
+        const updatedEntrega = entregas.filter((entrega) => entrega.id !== id);
+        setEntregas(updatedEntrega);
+        // setFilteredProductos(updatedProductos);
+      };
+
+    //PUT
+    // const handleEntregaUpdate = (updatedEntrega) => {
+    //     // Actualizar el producto en la lista de productos
+    //     const updatedEntrega = entregas.map((entrega) =>
+    //       entrega.id === updatedEntrega.id ? updatedEntrega : entrega
+    //     );
+    //     // Actualizar los estados con la nueva lista
+    //     setEntregas(updatedEntrega);
+    //     // setFilteredProductos(updatedProductos);
+    //   };
+
     return(
         <div className="container">
             <div className="contGeneralInfo">
@@ -113,12 +131,12 @@ const VerEntrega =() =>{
                             <li><strong>Usuario:</strong> {entrega.usuario}</li>
                             <li><strong>Fecha:</strong> {entrega.fecha} : {entrega.hora}hs</li>
                             <li><strong>Monto total:</strong> ${entrega.Total}</li>
+                            <li><strong>Gasto de Nafta:</strong> ${entrega.gastoNafta}</li>
             
                         </ul>
                         <div className='contBotonesEntrega'>
-                                <IconButton aria-label="delete">
-                                    <DeleteIcon />
-                                </IconButton>
+                        <Delete id={entrega.id} onDelete={handleEntregaDelete}> 
+                        </Delete>
 
                         <BotonModal entrega={entrega}></BotonModal>
                         

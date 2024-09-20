@@ -29,7 +29,8 @@
 }
 
 .home {
-    width: 30%;
+    min-width: 30%;
+    width: auto;
     height: auto;
     margin: 20px auto;
     padding: 20px;
@@ -55,6 +56,11 @@
     background-position: 50% 100%;
     background-repeat: no-repeat;
     border-radius: 50%;
+    transition: all 0.3s ease;
+}
+.logo2:hover{
+    transform: scale(1.15);
+    margin: 10px;
 }
 
 .home button {
@@ -75,6 +81,7 @@
 
 .home button:hover {
     background-color: #476483;
+    transform: scale(1.05);
 }
 
 .home button:active {
