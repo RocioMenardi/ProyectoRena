@@ -135,6 +135,7 @@ const VerEntrega =() =>{
             
                         </ul>
                         <div className='contBotonesEntrega'>
+                            
                         <Delete id={entrega.id} onDelete={handleEntregaDelete}> 
                         </Delete>
 
