@@ -173,8 +173,10 @@ class Entregaabm(APIView):
                     "precioVenta":producto_entrega.producto.precioVenta
                 })
             
+
             nombre_cliente= f"{entrega.cliente.nombre} {entrega.cliente.apellido}"
-            gasto= entrega.nafta.precio_litro * entrega.litrosGastados
+
+            gasto= entrega.nafta.precio_litro * entrega.litrosGastados ##calculo de la nafta gastada en precio
 
             data.append({
                 "id": entrega.id,
