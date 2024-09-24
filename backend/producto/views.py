@@ -176,6 +176,11 @@ class Productoabm(APIView):
         except TipoProducto.DoesNotExist:
             return Response({"error":"No existe el litro"}, status=404)
         
+        
+        if Producto.objects.filter(tipoProducto=tipoProducto, litro=litro):
+            return Response({'Error':'El producto ya existe'}, status=400)
+        
+
         #crear nuevo producto
         producto = Producto.objects.create(
             costo=costo,
