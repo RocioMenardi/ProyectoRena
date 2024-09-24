@@ -65,6 +65,10 @@
 .form-group {
     margin-bottom: 15px;
 }
+.form-group p {
+    margin: 0;
+    padding-left: 8px;
+}
 
 .input-field {
     width: 100%;

@@ -5,6 +5,7 @@ import '../../Login/Login.css';
 import '../../Home/Home.css';
 import { Link } from 'react-router-dom'; // Importar useNavigate
 import Url from '../../../utils/url';
+import { Alert } from '@mui/material';
 
 const AgregarProducto = () => {
     const [tipoProducto, setTipoProducto] =  useState([]);
@@ -77,7 +78,6 @@ const AgregarProducto = () => {
             });
     
             if (response.ok) {
-                console.log("Producto agregado con éxito");
                 alert("Producto registrado exitosamente")
                 // Reseteo los estados a sus valores por defecto (reset del formulario)
                 setSelectedTipoProducto("");
@@ -85,9 +85,19 @@ const AgregarProducto = () => {
                 setCosto("");
                 setPrecioVenta("");
             } else {
-                console.error("Hubo un error al agregar el producto");
+
+                const errorData = await response.json();
+                // Manejar el error, en este caso mostrar un mensaje al usuario
+                if (errorData.Error) {
+                    alert(errorData.Error);  // Mostrar el mensaje de error del backend
+                } else {
+                    alert("Hubo un error al agregar el producto.");
+                }
+                console.error("Hubo un error al agregar el producto:", errorData);
             }
+            
         } catch (error) {
+            alert(error)
             console.error("Error en la solicitud:", error);
         }
     };
@@ -107,6 +117,7 @@ const AgregarProducto = () => {
                     <div className="form-group">
 
                         <select type="text" id="tipoProducto" name="tipoProducto" 
+                        
                         className="input-field" placeholder='Tipo producto'
 
                         value={selectedTipoProducto} // Establecer valor seleccionado

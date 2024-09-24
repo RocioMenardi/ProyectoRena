@@ -11,6 +11,7 @@ import PrecioNafta from './componentes/nafta/PrecioNafta/PrecioNafta';
 import VerEntrega from './componentes/VerEntregas/VerEntrega';
 import ListaNafta from './componentes/nafta/listaNafta/listaNafta';
 import VerProductos from './componentes/Producto/verProductos/VerProductos';
+import InputBuscador from './componentes/ComponentesPrueba/InputBuscador';
 function App() {
     return (
         <UserProvider>
@@ -25,6 +26,7 @@ function App() {
                     <Route path="/verEntrega" element={<VerEntrega/>}/>
                     <Route path="/listaNafta" element={<ListaNafta/>}/>
                     <Route path="/verProductos" element={<VerProductos/>}/>
+                    <Route path="/prueba" element={<InputBuscador/>}/>
                 </Routes>
             </Router>
         </UserProvider>

@@ -1,10 +1,16 @@
 // src/componentes/RegistrarEntrega.js
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './RegistrarEntrega.css';
 import { useNavigate,Link } from 'react-router-dom';
+import InputBuscador from '../ComponentesPrueba/InputBuscador';
+import Url from '../../utils/url';
+import SelectProducto from './selectProductos';
 
 const RegistrarEntrega = () => {
-
+    const[clientes, setClientes] = useState([''])
+    const[productos, setProductos] = useState([''])
+    const[productoSelect, setProductoSelect]= useState(null)
+    const[clienteSelect, setClienteSelect]= useState(null)
     const [formData, setFormData] = useState({
         cliente: '',
         nafta: '',
@@ -12,8 +18,6 @@ const RegistrarEntrega = () => {
         fechaHora: '',
     });
     const navigate = useNavigate();
-
-    
 
     
     const handleSubmit = (e) => {
@@ -29,6 +33,31 @@ const RegistrarEntrega = () => {
         // Resetea el formulario o navega a otra página según lo necesites
     };
 
+    useEffect(() => {
+        fetch(`${Url}/producto/producto/`)
+        .then((res) => res.json())
+        .then((respuesta) => {
+            setProductos(respuesta.Productos)
+          })
+          .catch((error) => console.error("Error fetching data:", error));
+    },[]);
+    
+    useEffect(() => {
+        fetch(`${Url}/entrega/cliente/`)
+        .then((res) => res.json())
+        .then((respuesta) => {
+            setClientes(respuesta.Clientes)
+          })
+          .catch((error) => console.error("Error fetching data:", error));
+    },[]);
+    
+    const setearIdProducto= (id) =>{
+        setProductoSelect(id)
+    }
+    const setearIdCliente= (id) =>{
+        setProductoSelect(id)
+    }
+
     return (
         <div className="container">
             <div className="pageProducto">
@@ -41,37 +70,12 @@ const RegistrarEntrega = () => {
                 <form className="login-form" >
 
                     <div className="form-group">
-
-                        <select type="text" id="tipoProducto" name="tipoProducto" 
-                        className="input-field" placeholder='Tipo producto'
-
-                        // value={selectedTipoProducto} // Establecer valor seleccionado
-
-                        // onChange={(e) => setSelectedTipoProducto(e.target.value)}
-                        >
-
-                            {/* <option value="">Seleccione un tipo de producto</option>
-                            {tipoProducto.map((tipo, idx) => (
-                                <option key={idx} value={tipo.id}>{tipo.nombre}</option>
-                            ))} */}
-                        </select>
-
+                        <p>Clientes</p>
+                        <InputBuscador lista={clientes} setId={setearIdCliente}></InputBuscador>
                     </div>
 
                     <div className="form-group">
-                        <select type="text" id="litros" name="litros" 
-                        className="input-field" placeholder='Litros'
-                        // value={selectedLitros} // Establecer valor seleccionado
-                        // onChange={(e) => setSelectedLitros(e.target.value)}
-                        >
-                           
-                            {/* <option value="">Seleccione los litros</option>
-                            {litros.map((litro, idx) => (
-                                <option key={idx} value={litro.id}>{litro.litro} L</option>
-                            ))} */}
-
-                        </select>
-
+                        <SelectProducto lista={productos}></SelectProducto>
                     </div>
 
                     <div className="form-group">
