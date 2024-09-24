@@ -31,8 +31,8 @@ export default function Grouped({lista}) {
     <Autocomplete
       multiple
       id="checkboxes-tags-dem
-      options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
-      disableCloseOnSelecto"
+    
+      disableCloseOnSelect"
       options={options.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
 
       groupBy={(option) => option.firstLetter}

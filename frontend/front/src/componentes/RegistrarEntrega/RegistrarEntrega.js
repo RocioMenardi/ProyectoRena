@@ -75,7 +75,7 @@ const RegistrarEntrega = () => {
                     </div>
 
                     <div className="form-group">
-                        <SelectProducto lista={productos}></SelectProducto>
+                    <InputBuscador lista={productos} setId={setearIdProducto}></InputBuscador>
                     </div>
 
                     <div className="form-group">

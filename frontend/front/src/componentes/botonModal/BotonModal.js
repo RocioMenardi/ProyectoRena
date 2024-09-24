@@ -43,6 +43,7 @@ export default function BotonModal({ entrega }) {
                 <strong>{producto.nombre}</strong>: {producto.cantidad}L
               </li>
               <li style={{marginBottom:'8px'}}> <strong>Precio:</strong> ${producto.precioVenta}</li>
+              <li style={{marginBottom:'8px'}}> <strong>Cantidad:</strong> {producto.cantidadVendida}</li>
 
               </React.Fragment>
             ))}
