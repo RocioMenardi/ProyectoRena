@@ -10,7 +10,7 @@ from producto.models import Producto, ProductoEntrega
 def calcularTotal(productos):
         total=0
         for producto in productos:
-            total+= producto.producto.precioVenta 
+            total+= producto.producto.precioVenta * producto.cantidad
         return(total)
 
 
@@ -161,16 +161,19 @@ class Entregaabm(APIView):
         
 
         for entrega in paginated_entregas:
+
             productos= entrega.productoEntrega.all()
             # Serializar los productos
             productos_data = []
 
             for producto_entrega in productos:
+                
                 productos_data.append({
                     "producto_id": producto_entrega.producto.id,
                     "nombre": producto_entrega.producto.tipoProducto.nombre,
                     "cantidad": producto_entrega.producto.litro.cantidad,
-                    "precioVenta":producto_entrega.producto.precioVenta
+                    "precioVenta":producto_entrega.producto.precioVenta,
+                    "cantidadVendida":producto_entrega.cantidad,
                 })
             
 
@@ -234,14 +237,19 @@ class Entregaabm(APIView):
         )
 
         productos_data=[]
-        for producto_id in productos:
+
+        for producto in productos:
+            cantidad= producto['cantidad']
+
             try:
-                producto=Producto.objects.get(id=producto_id)
-                ProductoEntrega.objects.create(producto= producto, entrega= entrega)
-                productos_data.append({"id":producto.id, "nombre":producto.tipoProducto.nombre})
+                producto=Producto.objects.get(id=producto['id']) 
 
             except Producto.DoesNotExist:
-                return Response({"error":f"el producto {producto_id} no existe"}, status=404)
+                return Response({"error":f"el producto {producto.id} no existe"}, status=404)
+            
+            PE=ProductoEntrega.objects.create(producto= producto, entrega= entrega, cantidad= cantidad) #CREO EL DETALLE   
+
+            productos_data.append({"id":producto.id, "nombre":producto.tipoProducto.nombre, "cantidad": PE.cantidad})
 
         return Response({"Mensaje":"La entrega se creó con éxito",
                          "id": entrega.id,

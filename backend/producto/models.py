@@ -32,5 +32,6 @@ class Producto(models.Model, ModeloBase):
 class ProductoEntrega(models.Model):
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE, related_name="productoEntrega")
     entrega = models.ForeignKey(Entrega,on_delete=models.CASCADE, related_name="productoEntrega")
+    cantidad= models.IntegerField(default=1)
     def __str__(self): #en el admin muestre el atributo (nombre) del objeto.
         return f"{self.entrega.fecha}"
