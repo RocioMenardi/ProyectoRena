@@ -55,7 +55,7 @@ const InputBuscador = ({setId,lista}) => {
             <div className='buscador'>   
                     <input type="text"  
                     onChange={handleInputChange} 
-                    placeholder="Buscar..."
+                    placeholder=""
                     onFocus={handleInputFocus}
                     onBlur={handleInputBlur}
                     value={filter}></input>

@@ -5,7 +5,6 @@ import '../../Login/Login.css';
 import '../../Home/Home.css';
 import { Link } from 'react-router-dom'; // Importar useNavigate
 import Url from '../../../utils/url';
-import { Alert } from '@mui/material';
 
 const AgregarProducto = () => {
     const [tipoProducto, setTipoProducto] =  useState([]);
@@ -84,7 +83,7 @@ const AgregarProducto = () => {
                 setSelectedLitros("");
                 setCosto("");
                 setPrecioVenta("");
-            } else {
+            } else { 
 
                 const errorData = await response.json();
                 // Manejar el error, en este caso mostrar un mensaje al usuario
@@ -118,7 +117,7 @@ const AgregarProducto = () => {
 
                         <select type="text" id="tipoProducto" name="tipoProducto" 
                         
-                        className="input-field" placeholder='Tipo producto'
+                        className="select" placeholder='Tipo producto'
 
                         value={selectedTipoProducto} // Establecer valor seleccionado
 
@@ -133,8 +132,9 @@ const AgregarProducto = () => {
                     </div>
 
                     <div className="form-group">
+                        
                         <select type="text" id="litros" name="litros" 
-                        className="input-field" placeholder='Litros'
+                        className="select" placeholder='Litros'
                         value={selectedLitros} // Establecer valor seleccionado
                         onChange={(e) => setSelectedLitros(e.target.value)}>
                            

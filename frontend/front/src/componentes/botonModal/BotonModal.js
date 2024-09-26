@@ -12,6 +12,7 @@ export default function BotonModal({ entrega }) {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+
   return (
     <div>
       <Button onClick={handleOpen} className="botonModal">Detalle</Button>
@@ -28,7 +29,11 @@ export default function BotonModal({ entrega }) {
           </Typography>
 
           <Typography id="keep-mounted-modal-description" sx={{ mt: 2 }}>
-            <strong>Nafta (Precio por Litro):</strong> {entrega.nafta}
+            <strong>Nafta (Precio por Litro):</strong> {entrega.nafta}L
+          </Typography>
+
+          <Typography id="keep-mounted-Litros" sx={{ mt: 2 }}>
+            <strong>Litros Consumidos:</strong> {entrega.litrosGastados}L
           </Typography>
 
           <Typography sx={{ mt: 2 }}>

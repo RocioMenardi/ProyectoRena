@@ -7,7 +7,6 @@
     align-items: center;
     min-height: 100vh;
     height: auto;
-    background-color: #013465; /* Color de fondo azul oscuro */
 }
 
 /* Contenedor de página */
@@ -44,11 +43,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease-in-out;
 }
 
 .back-button:hover {
     background-color: #476483;
+    transform: scale(1.2);
 }
 
 .back-button:active {
@@ -68,6 +68,27 @@
 .form-group p {
     margin: 0;
     padding-left: 8px;
+    /* text-align: center; */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.2rem;
+    color: #013465;
+}
+.form-group input {
+    background-color: transparent;
+    border-bottom: 2px solid white ;
+    border-radius: 0;
+    color: white;
+    box-shadow: none;
+    transition: all ;
+    text-align: center;
+}
+
+.form-group input::placeholder {
+    color: white;
+}
+
+.form-group input:hover {
+    box-shadow: -5px 5px 15px rgba(210, 210, 210, 0.38);
 }
 
 .input-field {
@@ -76,57 +97,87 @@
     box-sizing: border-box;
     border: none;
     border-radius: 35px; /* Redondear los campos de entrada */
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); /* Sombra para efecto de sobresalir */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); 
 }
 
 .contListaProducto{
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
 }
+
+.contListaProducto p{
+    margin: 0;
+    /* padding-left: 8px; */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.2rem;
+    color: #013465;
+    text-align: left;
+}
+
 .contListaProducto h1{
     font-size: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     display: flex;
     justify-content: space-around;
     gap: 60px;
+    color: #013465;
+    
 }
+
 .listaProducto{
-    width: 97%;
+    width: 106%;
     min-height: 10vh;
     max-height: 30vh;
     overflow-y: auto;
-    background-color: rgba(255, 255, 255, 0.196);
+    background-color: #0135658b;
     border-radius: 10px;
     padding: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 10px;
-
+    margin-left: -5%;
 }
 
 .listaProducto p {
     display: flex;
     justify-content: space-between;
 }
+
 .lineaProducto{
     display: flex;
     min-height: 4vh;
     flex-direction: row;
     align-items: center;
-    gap: 20%;
+    justify-content: space-between;
     border-radius: 30px;
     padding: 0px 10px ;
-    background-color: rgba(233, 233, 233, 0.792);
+    background-color: #013465;
+    color: white;
     transition: all 0.3s ease-in-out;
+    
+}
+.lineaProducto p {
+    color: white;
+    max-width: 50%;
+    font-size: 0.93rem;
+    row-gap: 1;
+    
 }
 
 .contMasMenos{
-    /* background-color: red; */
+    
     min-height: 6vh;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 8px; 
+    position: relative;
+    right: 4px;
 }
 
 .contMasMenos button{

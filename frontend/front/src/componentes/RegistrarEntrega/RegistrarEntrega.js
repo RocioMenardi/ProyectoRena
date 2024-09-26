@@ -177,15 +177,15 @@ const handlePost = async (e) => {
 
     return (
         <div className="container">
-            <div className="pageProducto">
+            <div className="page">
                 <button>
-                    <Link to="/home" className="back-button">←</Link>    
+                    <Link to="/home" className="back-button">← </Link>    
                 </button> 
 
                 <h2>Agregar Entrega</h2>
 
                 <form className="login-form" onSubmit={handlePost} >
-
+ 
                     <div className="form-group">
                         <p>Clientes</p>
                         <InputBuscador lista={clientes} setId={setearIdCliente}></InputBuscador>
@@ -193,10 +193,10 @@ const handlePost = async (e) => {
 
                     {/* CONTENEDOR DE LOS PRODUCTOS SELECCIONADOS */}
                     <div className='contListaProducto'> 
+                        <p>Productos</p>
                         <InputBuscador lista={productos} setId={setearIdProducto}></InputBuscador>
-                        <h1>
-                             
-                             <span>producto</span>
+                        <h1>  
+                             <span>Producto</span>
                              <span>Cantidad</span>
                         </h1>
 
@@ -224,7 +224,7 @@ const handlePost = async (e) => {
 
                     <div className="form-group">
                         <input type="number" id="litrosGastados" name="litrosGastados" 
-                        className="input-field" placeholder='litrosGastados'
+                        className="input-field" placeholder='Litros gastados'
                         onChange={(e) => setCantLitros(e.target.value)}
                         />
                     </div>

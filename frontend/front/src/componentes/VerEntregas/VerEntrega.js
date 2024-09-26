@@ -140,7 +140,7 @@ const VerEntrega =() =>{
                         </Delete>
 
                         <BotonModal entrega={entrega}></BotonModal>
-                        
+    
                                 <IconButton aria-label="edit">
                                     <EditIcon />
                                 </IconButton>
