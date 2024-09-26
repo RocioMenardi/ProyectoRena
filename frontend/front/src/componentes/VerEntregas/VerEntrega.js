@@ -94,7 +94,7 @@ const VerEntrega =() =>{
         }
       };
 }
-console.log(entregas)
+
     //DELETE
     const handleEntregaDelete = (id) => {
         const updatedEntrega = entregas.filter((entrega) => entrega.id !== id);

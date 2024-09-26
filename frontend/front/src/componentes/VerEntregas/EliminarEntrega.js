@@ -36,7 +36,6 @@ export default function Delete({ id, onDelete }) {
         if (response.ok) {
           console.log("Enterga eliminada exitosamente");
             setOpen(false);
-            alert("Enterga eliminada exitosamente")
             onDelete(id);
         // Aquí se llama a la función onDelete que se pasó como prop
         } else {

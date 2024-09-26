@@ -79,6 +79,69 @@
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); /* Sombra para efecto de sobresalir */
 }
 
+.contListaProducto{
+    margin-bottom: 20px;
+}
+.contListaProducto h1{
+    font-size: 15px;
+    display: flex;
+    justify-content: space-around;
+    gap: 60px;
+}
+.listaProducto{
+    width: 97%;
+    min-height: 10vh;
+    max-height: 30vh;
+    overflow-y: auto;
+    background-color: rgba(255, 255, 255, 0.196);
+    border-radius: 10px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+
+}
+
+.listaProducto p {
+    display: flex;
+    justify-content: space-between;
+}
+.lineaProducto{
+    display: flex;
+    min-height: 4vh;
+    flex-direction: row;
+    align-items: center;
+    gap: 20%;
+    border-radius: 30px;
+    padding: 0px 10px ;
+    background-color: rgba(233, 233, 233, 0.792);
+    transition: all 0.3s ease-in-out;
+}
+
+.contMasMenos{
+    /* background-color: red; */
+    min-height: 6vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 8px; 
+}
+
+.contMasMenos button{
+    background-color: rgba(165, 165, 165, 0.563);
+    border-radius:10px;
+    border: 2px solid rgb(248, 248, 248);
+    height: 3vh;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.372);
+    text-align: center;
+    
+}
+.contMasMenos button:active{
+    transform: scale(1.1);
+    box-shadow: -5px 5px 10px rgba(0, 0, 0, 0.372);
+}
 /* Estilos para el botón de submit */
 .submit-button {
     width: 100%;
@@ -97,4 +160,16 @@
 
 .submit-button:active {
     background-color: #476483;
+}
+
+@media (max-width:730px){
+    .lineaProducto{
+        gap: 15%;
+    }
+    .contMasMenos button{
+        height: 5vh;
+        width: 4vh;
+        padding: 0;
+    }
+
 }

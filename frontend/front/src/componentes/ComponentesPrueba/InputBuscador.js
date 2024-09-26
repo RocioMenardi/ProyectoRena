@@ -47,7 +47,7 @@ const InputBuscador = ({setId,lista}) => {
     const opcionSelectClick=(id , nombre, atributo2)=> {
         setId(id)
         setDropdownVisible(false);
-        setFilter(`${nombre} ${atributo2}`) 
+        setFilter(`${nombre}, ${atributo2}`) 
     }
 
 
