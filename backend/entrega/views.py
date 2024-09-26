@@ -197,12 +197,11 @@ class Entregaabm(APIView):
     
     def post(self,request):
 
-        if not all(key in request.data for key in ["cliente", "nafta", "usuario","productos"]):
+        if not all(key in request.data for key in ["cliente", "nafta","productos"]): ##AGREGAR EL USUARIO
             return Response({"Error": "Faltan los campos obligatorios"}, status=400)
         
         #obtengo los valores
-        fecha = request.data.get("fecha")
-        hora = request.data.get("hora")
+        
         cliente_id = request.data.get("cliente")
         nafta_id = request.data.get("nafta")
         usuario_id = request.data.get("usuario")
@@ -226,10 +225,10 @@ class Entregaabm(APIView):
         #crear entrega
         if "litrosGastados" in request.data:
             litrosGastados = request.data.get("litrosGastados")
+        else:
+            litrosGastados=0
             
         entrega = Entrega.objects.create(
-            fecha = fecha,
-            hora = hora,
             cliente = cliente,
             nafta = nafta,
             usuario = usuario,
