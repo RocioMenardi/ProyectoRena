@@ -187,6 +187,7 @@ class Entregaabm(APIView):
                 "hora":entrega.hora.strftime('%H:%M'),
                 "cliente": nombre_cliente,
                 "nafta": entrega.nafta.precio_litro,
+                'litrosGastados': entrega.litrosGastados,
                 "gastoNafta": gasto,
                 "usuario": entrega.usuario.nombre,
                 "Total": calcularTotal(productos),
