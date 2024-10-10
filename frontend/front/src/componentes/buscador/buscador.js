@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import style from './buscador.module.css'; // Asumiendo que tienes un archivo CSS con los estilos
+import style from './buscador.module.css'; 
 
 const Buscador = ({ onSearch }) => {
     // Estado para almacenar el valor del campo de búsqueda
