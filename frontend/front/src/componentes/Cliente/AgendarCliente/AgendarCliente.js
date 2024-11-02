@@ -1,13 +1,14 @@
 import React from 'react';
 import { useState } from 'react';
-import '../Login/Login.css';
-import '../Home/Home.css';
+import '../../Login/Login.css';
+import '../../Home/Home.css';
 import './AgendarCliente.css';// Importar los estilos
 import { useNavigate } from 'react-router-dom'; // Importar useNavigate
-import Url from '../../utils/url';
+import Url from '../../../utils/url';
 
 const AgendarCliente = () => {
     const navigate = useNavigate(); // Definir el hook
+    
     const [formData, setFormData] = useState({ 
         nombre: '',
         apellido: '',

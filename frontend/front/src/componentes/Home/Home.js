@@ -21,6 +21,7 @@ const Home = () => {
                 <button onClick={() => navigate('/verEntrega')}>Ver Entregas</button>
                 <button onClick={() => navigate('/registrarEntrega')}>Registrar Entrega</button>
                 <button onClick={() => navigate('/agendarCliente')}>Agendar Cliente</button>
+                <button onClick={() => navigate('/verClientes')}>Ver Clientes</button>
                 <button onClick={() => navigate('/verProductos')}>Ver Productos</button>
                 <button onClick={() => navigate('/listaNafta')}>Nafta</button>
             </div>

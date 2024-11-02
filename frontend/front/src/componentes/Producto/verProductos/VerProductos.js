@@ -8,13 +8,11 @@ import Url from '../../../utils/url';
 
 
 const VerProductos = () => {
-
-    const [productos, setProductos] =  useState([]); // Estado para almacenar las entregas
     const navigate = useNavigate();
+    const [productos, setProductos] =  useState([]); // Estado para almacenar las entregas
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredProductos, setFilteredProductos] = useState([]);
     
-
     const isMobileDevice = () => {
         return /Mobi|Android/i.test(navigator.userAgent) || window.innerWidth <= 768;
     };
@@ -68,7 +66,7 @@ const VerProductos = () => {
     return(
         <div className="container">
 
-           <div className='contenedorProductos'>
+          <div className='contenedorProductos'>
 
                 <button className="back-buttonNafta" onClick={() => navigate('/home')}>←</button> 
 
@@ -95,8 +93,8 @@ const VerProductos = () => {
                         </div>
                         
                         ))}
-           </div>
-           {isMobileDevice()===false && <button onClick={() => navigate('/agregarProducto')} className='button'>Registrar Producto</button>}
+          </div>
+          {isMobileDevice()===false && <button onClick={() => navigate('/agregarProducto')} className='button'>Registrar Producto</button>}
         </div>
     )
 };
