@@ -1,4 +1,4 @@
-.contenedorProductos{
+.contenedorClientes{
     min-width: 56vh;
     width: auto;
     min-height: 70vh;
@@ -15,7 +15,8 @@
     scrollbar-width: 2px !important; /* Tamaño de la barra de desplazamiento */
     scrollbar-color: rgba(0, 0, 0, 0.5) rgba(200, 200, 200, 0) !important; /* Color del thumb y del track */
 }
-.contenedorProductos h1{
+
+.contenedorClientes h1{
     color: #013465;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.323);
     text-align: center;
@@ -24,7 +25,7 @@
     margin-bottom: 10px;
 }
 
-.contProducto{
+.contClientes{
     width: 50vh;
     overflow: hidden;
     min-height:10vh !important;
@@ -39,16 +40,17 @@
     margin-top: 20px;
     transition: all 0.3s ease-in-out;
 }
-.contProducto:hover{
+
+.contClientes:hover{
     transform: scale(1.1);
 }
 
-.contProducto li{
+.contClientes li{
     margin: 10px;
     font-size: 1.2rem;
 }
 
-.contProducto p{
+.contClientes p{
     margin-top: 10px;
     text-align: center;
     font-size: 1.8rem;

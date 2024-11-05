@@ -67,8 +67,7 @@
     overflow: hidden;
     align-items: center;
     justify-content: center;
-    gap: 5%; 
-       
+    gap: 5%;
 }
 .buttonEntrega {
     position: absolute;
